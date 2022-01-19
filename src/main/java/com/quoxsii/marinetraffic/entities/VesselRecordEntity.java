@@ -3,7 +3,7 @@ package com.quoxsii.marinetraffic.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "vessel_position")
+@Table(name = "vessel_record")
 public class VesselRecordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

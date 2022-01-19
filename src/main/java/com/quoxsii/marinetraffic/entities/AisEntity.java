@@ -1,9 +1,13 @@
 package com.quoxsii.marinetraffic.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.quoxsii.marinetraffic.models.Ais;
+import com.quoxsii.marinetraffic.models.AisDto;
+import com.quoxsii.marinetraffic.models.Vessel;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "ais")
@@ -17,6 +21,13 @@ public class AisEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ais")
     private List<VesselEntity> vesselEntities;
+
+    public static AisEntity toEntity(AisDto dto) {
+        AisEntity entity = new AisEntity();
+        entity.setChannelId(dto.getChannelId());
+        entity.setChannel(dto.getChannel());
+        return entity;
+    }
 
     public AisEntity() {
     }

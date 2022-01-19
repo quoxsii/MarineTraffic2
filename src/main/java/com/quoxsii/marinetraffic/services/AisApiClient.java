@@ -20,8 +20,8 @@ public class AisApiClient {
     ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
     private RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-    public List<AisDto> getAisDtoList() {
-        String url = "ip adress";
+    public List<AisDto> getAisDtoList(String url) {
+        //String url = "ip";
 
         try {
             String response = restTemplate.getForObject(new URI(url), String.class);

@@ -23,6 +23,6 @@ public class VesselRecordService {
     private AisApiClient aisApiClient;
 
     public List<VesselRecord> getAll() {
-        return aisApiClient.getAisDtoList().stream().map(VesselRecord::toVesselPosition).collect(toList());
+        return aisApiClient.getAisDtoList("ip").stream().map(VesselRecord::toVesselPosition).collect(toList());
     }
 }

@@ -20,7 +20,7 @@ public class VesselService {
     private AisApiClient aisApiClient;
 
     public List<Vessel> getAll() {
-        return aisApiClient.getAisDtoList().stream().map(Vessel::toVessel).collect(toList());
+        return aisApiClient.getAisDtoList("ip").stream().map(Vessel::toVessel).collect(toList());
     }
 
     public VesselEntity getById(Long id) throws VesselNotFoundException {
