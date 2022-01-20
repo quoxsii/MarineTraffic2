@@ -6,11 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Timer;
 
 @SpringBootApplication
+@EnableScheduling
 public class MarinetrafficApplication {
 	@Autowired
 	AisService aisService;
@@ -23,7 +25,7 @@ public class MarinetrafficApplication {
 	}
 
 	@Scheduled(fixedRate = 5000)
-	private void uploadData(String url) {
-		aisService.save(url);
+	private void uploadData() {
+		aisService.save("");
 	}
 }

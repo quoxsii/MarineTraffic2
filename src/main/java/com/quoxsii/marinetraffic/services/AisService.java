@@ -45,6 +45,8 @@ public class AisService {
     public CompletableFuture<List<AisEntity>> save(String url) {
         List<AisDto> aisDtoList = aisApiClient.getAisDtoList(url);
         List<AisEntity> aisEntityList = aisDtoList.stream().map(AisEntity::toEntity).collect(toList());
+        System.out.println(
+                "Fixed rate task - " + System.currentTimeMillis() / 1000);
 
         return CompletableFuture.completedFuture((List<AisEntity>) aisRepository.saveAll(aisEntityList));
     }
