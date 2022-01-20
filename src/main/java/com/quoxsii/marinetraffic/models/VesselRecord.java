@@ -4,8 +4,6 @@ import com.quoxsii.marinetraffic.entities.VesselRecordEntity;
 import org.springframework.lang.NonNull;
 
 public class VesselRecord {
-    private Long id;
-    private Long vesselId;
     private Float lat;
     private Float lon;
     private Float cog;
@@ -20,8 +18,6 @@ public class VesselRecord {
 
     public static VesselRecord toModel(VesselRecordEntity entity) {
         VesselRecord model = new VesselRecord();
-        model.setId(entity.getId());
-        model.setVesselId(entity.getVessel().getId());
         model.setLat(entity.getLat());
         model.setLon(entity.getLon());
         model.setCog(entity.getCog());
@@ -36,7 +32,7 @@ public class VesselRecord {
         return model;
     }
 
-    public static VesselRecord toVesselPosition(@NonNull AisDto dto) {
+    public static VesselRecord toModel(@NonNull AisDto dto) {
         VesselRecord model = new VesselRecord();
         model.setLat(dto.getLat());
         model.setLon(dto.getLon());
@@ -52,22 +48,6 @@ public class VesselRecord {
     }
 
     public VesselRecord() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getVesselId() {
-        return vesselId;
-    }
-
-    public void setVesselId(Long vesselId) {
-        this.vesselId = vesselId;
     }
 
     public Float getLat() {

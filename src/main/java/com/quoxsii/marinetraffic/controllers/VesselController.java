@@ -7,15 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/vessels")
+@RequestMapping("/vessel")
 public class VesselController {
     @Autowired
     private VesselService vesselService;
 
-    @GetMapping(params = "id")
-    public ResponseEntity getOneVessel(@RequestParam Long id) {
+    @GetMapping(params = "mmsi")
+    public ResponseEntity getBiMmsi(@RequestParam String mmsi) {
         try {
-            return ResponseEntity.ok(vesselService.getById(id));
+            return ResponseEntity.ok(vesselService.getByMmsi(mmsi));
         } catch (VesselNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
@@ -24,7 +24,7 @@ public class VesselController {
     }
 
     @GetMapping
-    public ResponseEntity getAllVessels() {
+    public ResponseEntity getAll() {
         try {
             return ResponseEntity.ok(vesselService.getAll());
         } catch (Exception ex) {

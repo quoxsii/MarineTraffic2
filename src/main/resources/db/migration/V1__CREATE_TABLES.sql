@@ -14,7 +14,7 @@ CREATE UNIQUE INDEX ais_id_uindex ON public.ais (id);
 create table vessel (
     id serial not null primary key,
     mmsi varchar(9) not null,
-    imo varchar(7),
+    imo varchar(9),
     country varchar(255),
     length int,
     width int,

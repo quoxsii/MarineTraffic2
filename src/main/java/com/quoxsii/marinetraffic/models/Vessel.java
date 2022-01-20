@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Vessel {
-    private Long id;
-    private Long aisId;
     private String mmsi;
     private String imo;
     private String country;
@@ -24,8 +22,6 @@ public class Vessel {
 
     public static Vessel toModel(VesselEntity entity) {
         Vessel model = new Vessel();
-        model.setId(entity.getId());
-        model.setAisId(entity.getAis().getId());
         model.setMmsi(entity.getMmsi());
         model.setImo(entity.getImo());
         model.setCountry(entity.getCountry());
@@ -42,7 +38,7 @@ public class Vessel {
         return model;
     }
 
-    public static Vessel toVessel(@NonNull AisDto dto) {
+    public static Vessel toModel(@NonNull AisDto dto) {
         Vessel model = new Vessel();
         model.setMmsi(dto.getMmsi());
         model.setImo(dto.getImo());
@@ -59,22 +55,6 @@ public class Vessel {
     }
 
     public Vessel() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getAisId() {
-        return aisId;
-    }
-
-    public void setAisId(Long aisId) {
-        this.aisId = aisId;
     }
 
     public String getMmsi() {

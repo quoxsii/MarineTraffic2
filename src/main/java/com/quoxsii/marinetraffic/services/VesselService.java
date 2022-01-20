@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -16,18 +15,17 @@ import static java.util.stream.Collectors.toList;
 public class VesselService {
     @Autowired
     private VesselRepository vesselRepository;
-    @Autowired
-    private AisApiClient aisApiClient;
 
     public List<Vessel> getAll() {
-        return aisApiClient.getAisDtoList("ip").stream().map(Vessel::toVessel).collect(toList());
+        List<VesselEntity> vesselEntityList = (List<VesselEntity>) vesselRepository.findAll();
+        return vesselEntityList.stream().map(Vessel::toModel).collect(toList());
     }
 
-    public VesselEntity getById(Long id) throws VesselNotFoundException {
-        Optional<VesselEntity> vessel = vesselRepository.findById(id);
-        if(!vessel.isPresent()) {
+    public Vessel getByMmsi(String mmsi) throws VesselNotFoundException {
+        VesselEntity vesselEntity = vesselRepository.findByMmsi(mmsi);
+        if(vesselEntity == null) {
             throw new VesselNotFoundException("Судно не найдено");
         }
-        return vessel.get();
+        return Vessel.toModel(vesselEntity);
     }
 }

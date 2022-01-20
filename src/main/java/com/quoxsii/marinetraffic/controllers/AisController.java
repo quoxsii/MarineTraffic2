@@ -4,6 +4,8 @@ import com.quoxsii.marinetraffic.entities.AisEntity;
 import com.quoxsii.marinetraffic.exceptions.AisNotFoundException;
 import com.quoxsii.marinetraffic.models.Ais;
 import com.quoxsii.marinetraffic.services.AisService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,8 @@ import java.util.function.Function;
 public class AisController {
     @Autowired
     private AisService aisService;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AisController.class);
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
@@ -42,7 +46,7 @@ public class AisController {
     }
 
     private static Function<Throwable, ResponseEntity<? extends List<Ais>>> handleGetAisFailure = throwable -> {
-        System.out.printf("Failed to read records: {}", throwable);
+        LOGGER.info("Failed to read records: {}", throwable);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     };
 }

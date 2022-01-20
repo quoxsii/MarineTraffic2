@@ -1,5 +1,7 @@
 package com.quoxsii.marinetraffic.entities;
 
+import com.quoxsii.marinetraffic.models.AisDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,22 @@ public class VesselRecordEntity {
     @ManyToOne
     @JoinColumn(name = "vessel_id", nullable = false)
     private VesselEntity vessel;
+
+    public static VesselRecordEntity toEntity(VesselEntity vessel, AisDto dto) {
+        VesselRecordEntity entity = new VesselRecordEntity();
+        entity.setLat(dto.getLat());
+        entity.setLon(dto.getLon());
+        entity.setCog(dto.getCog());
+        entity.setSog(dto.getSog());
+        entity.setTrueHeading(dto.getTrueHeading());
+        entity.setRot(dto.getRot());
+        entity.setNavStateCode(dto.getNavStateCode());
+        entity.setNavState(dto.getNavState());
+        entity.setDestination(dto.getDestination());
+        entity.setMsgTime(dto.getMsgTime());
+        entity.setVessel(vessel);
+        return entity;
+    }
 
     public VesselRecordEntity() {
     }

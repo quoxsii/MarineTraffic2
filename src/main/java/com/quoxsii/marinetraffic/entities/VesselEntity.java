@@ -1,5 +1,9 @@
 package com.quoxsii.marinetraffic.entities;
 
+import com.quoxsii.marinetraffic.models.AisDto;
+import com.quoxsii.marinetraffic.models.Vessel;
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,6 +31,23 @@ public class VesselEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vessel")
     private List<VesselRecordEntity> vesselRecordEntities;
+
+    public static VesselEntity toEntity(AisEntity ais, AisDto dto) {
+        VesselEntity entity = new VesselEntity();
+        entity.setMmsi(dto.getMmsi());
+        entity.setImo(dto.getImo());
+        entity.setCountry(dto.getCountry());
+        entity.setLength(dto.getLength());
+        entity.setWidth(dto.getWidth());
+        entity.setDraught(dto.getDraught());
+        entity.setCallSign(dto.getCallSign());
+        entity.setTypeCode(dto.getTypeCode());
+        entity.setType(dto.getType());
+        entity.setTypeDetail(dto.getTypeDetail());
+        entity.setName(dto.getName());
+        entity.setAis(ais);
+        return entity;
+    }
 
     public VesselEntity() {
     }

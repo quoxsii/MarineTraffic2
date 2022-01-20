@@ -21,8 +21,6 @@ public class AisApiClient {
     private RestTemplate restTemplate = new RestTemplate(requestFactory);
 
     public List<AisDto> getAisDtoList(String url) {
-        //String url = "ip";
-
         try {
             String response = restTemplate.getForObject(new URI(url), String.class);
             AisDto[] aisArray = new Gson().fromJson(response, AisDto[].class);
