@@ -20,7 +20,7 @@ public class VesselRecordService {
     @Async
     public void add(PostEntity postEntity, List<PostApiClientDto> postApiClientDtoList) {
         for (int i = 0; i < postApiClientDtoList.size(); i++) {
-            vesselRecordRepository.save(VesselRecordEntity.toEntity(postEntity.getVesselEntities().get(i), postApiClientDtoList.get(i)));
-        }
+           vesselRecordRepository.save(VesselRecordEntity.toEntity(postEntity.getVesselEntities().get(i), postApiClientDtoList.get(i)));
+       }
     }
 }

@@ -11,8 +11,8 @@ import java.util.concurrent.Executor;
 
 @Configuration
 @EnableAsync
-public class AsyncConfiguration {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncConfiguration.class);
+public class AsyncConfig {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncConfig.class);
 
     @Bean (name = "taskExecutor")
     public Executor taskExecutor() {

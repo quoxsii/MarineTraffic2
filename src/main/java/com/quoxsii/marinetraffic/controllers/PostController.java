@@ -3,8 +3,6 @@ package com.quoxsii.marinetraffic.controllers;
 import com.quoxsii.marinetraffic.exceptions.PostAlreadyExistsException;
 import com.quoxsii.marinetraffic.exceptions.PostNotFoundException;
 import com.quoxsii.marinetraffic.services.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +15,8 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getAll() {
+    @GetMapping(path = "/")
+    public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(postService.getAll());
         } catch (Exception ex) {
@@ -27,24 +25,35 @@ public class PostController {
     }
 
     @GetMapping(params = "id")
-    public ResponseEntity getById(@RequestParam Long id) {
+    public ResponseEntity<?> getById(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(postService.getById(id));
         } catch (PostNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body("Произошла ошибка");
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 
-    @PostMapping(params = "url")
-    public ResponseEntity add(String name, String url) {
+    @PostMapping(params = {"name", "url"})
+    public ResponseEntity<?> add(@RequestParam String name, @RequestParam String url) {
         try {
             return ResponseEntity.ok(postService.add(name, url));
         } catch (PostAlreadyExistsException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
+        }
+    }
+
+    @DeleteMapping(params = "id")
+    public ResponseEntity<?> delete(@RequestParam Long id) {
+        try {
+            return ResponseEntity.ok(postService.delete(id));
+        } catch (PostNotFoundException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 }

@@ -35,12 +35,12 @@ public class MarineTrafficApplication {
 		SpringApplication.run(MarineTrafficApplication.class, args);
 	}
 
-	@Scheduled(fixedRate = 20000)
+	@Scheduled(fixedRate = 120000)
 	private void updateData() {
-		if (postService.getAll().isEmpty()) {
-			System.out.println("Posts not found, data loading has stopped");
-			return;
-		}
+//		if (postService.getAll().isEmpty()) {
+//			System.out.println("Posts not found, data loading has stopped");
+//			return;
+//		}
 
 		for (PostEntity postEntity : postRepository.findAll()) {
 			List<PostApiClientDto> postApiClientDto = postApiClientService.parse(postEntity);

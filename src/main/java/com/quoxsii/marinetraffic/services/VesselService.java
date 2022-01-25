@@ -6,16 +6,16 @@ import com.quoxsii.marinetraffic.entities.VesselEntity;
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
 import com.quoxsii.marinetraffic.models.Vessel;
 import com.quoxsii.marinetraffic.repositories.VesselRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
+@Transactional
 public class VesselService {
     private final VesselRepository vesselRepository;
 
@@ -38,7 +38,6 @@ public class VesselService {
 
     @Async
     public void update(PostEntity postEntity, List<PostApiClientDto> postApiClientDtoList) {
-        List<VesselEntity> vesselEntityList = (List<VesselEntity>) vesselRepository.findAll();
         for (PostApiClientDto postApiClientDto : postApiClientDtoList) {
             VesselEntity vesselEntity = VesselEntity.toEntity(postEntity, postApiClientDto);
             if (vesselRepository.findByMmsi(vesselEntity.getMmsi()) == null) {

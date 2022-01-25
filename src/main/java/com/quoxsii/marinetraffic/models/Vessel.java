@@ -2,10 +2,10 @@ package com.quoxsii.marinetraffic.models;
 
 import com.quoxsii.marinetraffic.dtos.PostApiClientDto;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
+import com.quoxsii.marinetraffic.entities.VesselRecordEntity;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Vessel {
     private String mmsi;
@@ -33,8 +33,9 @@ public class Vessel {
         model.setType(entity.getType());
         model.setTypeDetail(entity.getTypeDetail());
         model.setName(entity.getName());
-        List<VesselRecord> vr = entity.getVesselRecordEntities().stream().map(VesselRecord::toModel).collect(Collectors.toList());
-        model.setVesselRecord(vr.get(vr.size() - 1));
+        List<VesselRecordEntity> vesselRecordEntityList = entity.getVesselRecordEntities();
+        VesselRecordEntity vesselRecordEntity = vesselRecordEntityList.get(vesselRecordEntityList.size() - 1);
+        model.setVesselRecord(VesselRecord.toModel(vesselRecordEntity));
         return model;
     }
 

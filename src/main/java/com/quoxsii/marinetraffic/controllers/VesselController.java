@@ -1,6 +1,7 @@
 package com.quoxsii.marinetraffic.controllers;
 
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
+import com.quoxsii.marinetraffic.models.Vessel;
 import com.quoxsii.marinetraffic.services.VesselService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class VesselController {
     }
 
     @GetMapping(params = "mmsi")
-    public ResponseEntity getBiMmsi(@RequestParam String mmsi) {
+    public ResponseEntity<?> getByMmsi(@RequestParam String mmsi) {
         try {
             return ResponseEntity.ok(vesselService.getByMmsi(mmsi));
         } catch (VesselNotFoundException ex) {
@@ -26,8 +27,8 @@ public class VesselController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity getAll() {
+    @GetMapping(path = "/")
+    public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(vesselService.getAll());
         } catch (Exception ex) {
