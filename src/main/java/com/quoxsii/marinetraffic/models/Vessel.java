@@ -1,5 +1,6 @@
 package com.quoxsii.marinetraffic.models;
 
+import com.quoxsii.marinetraffic.dtos.PostApiClientDto;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
 import org.springframework.lang.NonNull;
 
@@ -23,7 +24,6 @@ public class Vessel {
     public static Vessel toModel(VesselEntity entity) {
         Vessel model = new Vessel();
         model.setMmsi(entity.getMmsi());
-        model.setImo(entity.getImo());
         model.setCountry(entity.getCountry());
         model.setLength(entity.getLength());
         model.setWidth(entity.getWidth());
@@ -38,10 +38,9 @@ public class Vessel {
         return model;
     }
 
-    public static Vessel toModel(@NonNull AisDto dto) {
+    public static Vessel toModel(@NonNull PostApiClientDto dto) {
         Vessel model = new Vessel();
         model.setMmsi(dto.getMmsi());
-        model.setImo(dto.getImo());
         model.setCountry(dto.getCountry());
         model.setLength(dto.getLength());
         model.setWidth(dto.getWidth());

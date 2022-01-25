@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/vessel")
 public class VesselController {
-    @Autowired
-    private VesselService vesselService;
+    private final VesselService vesselService;
+
+    public VesselController(VesselService vesselService) {
+        this.vesselService = vesselService;
+    }
 
     @GetMapping(params = "mmsi")
     public ResponseEntity getBiMmsi(@RequestParam String mmsi) {

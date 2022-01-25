@@ -1,5 +1,6 @@
 package com.quoxsii.marinetraffic.models;
 
+import com.quoxsii.marinetraffic.dtos.PostApiClientDto;
 import com.quoxsii.marinetraffic.entities.VesselRecordEntity;
 import org.springframework.lang.NonNull;
 
@@ -32,7 +33,7 @@ public class VesselRecord {
         return model;
     }
 
-    public static VesselRecord toModel(@NonNull AisDto dto) {
+    public static VesselRecord toModel(@NonNull PostApiClientDto dto) {
         VesselRecord model = new VesselRecord();
         model.setLat(dto.getLat());
         model.setLon(dto.getLon());

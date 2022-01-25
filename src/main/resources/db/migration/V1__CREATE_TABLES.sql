@@ -4,17 +4,16 @@ create table hibernate_sequence (
 insert into hibernate_sequence values (1);
 insert into hibernate_sequence values (1);
 
-create table ais (
+create table post (
     id serial not null primary key,
-    channel_id int not null,
-    channel varchar(64)
+    name varchar(64),
+    url text not null
 );
-CREATE UNIQUE INDEX ais_id_uindex ON public.ais (id);
+CREATE UNIQUE INDEX post_id_uindex ON public.post (id);
 
 create table vessel (
     id serial not null primary key,
     mmsi varchar(9) not null,
-    imo varchar(9),
     country varchar(255),
     length int,
     width int,
@@ -42,3 +41,5 @@ create table vessel_record (
     msg_time varchar(13)
 );
 CREATE UNIQUE INDEX vessel_record_id_uindex ON public.vessel_record (id);
+
+
