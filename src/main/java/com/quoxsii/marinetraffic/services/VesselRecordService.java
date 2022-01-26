@@ -1,9 +1,10 @@
 package com.quoxsii.marinetraffic.services;
 
-import com.quoxsii.marinetraffic.dtos.PostApiClientDto;
-import com.quoxsii.marinetraffic.entities.PostEntity;
-import com.quoxsii.marinetraffic.entities.VesselRecordEntity;
+import com.quoxsii.marinetraffic.dtos.VesselDto;
+import com.quoxsii.marinetraffic.entities.VesselEntity;
+import com.quoxsii.marinetraffic.mappers.VesselRecordMapper;
 import com.quoxsii.marinetraffic.repositories.VesselRecordRepository;
+import com.quoxsii.marinetraffic.repositories.VesselRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,17 @@ import java.util.List;
 @Service
 public class VesselRecordService {
     private final VesselRecordRepository vesselRecordRepository;
+    private final VesselRepository vesselRepository;
 
-    public VesselRecordService(VesselRecordRepository recordRepository) {
-        this.vesselRecordRepository = recordRepository;
+    public VesselRecordService(VesselRecordRepository vesselRecordRepository, VesselRepository vesselRepository) {
+        this.vesselRecordRepository = vesselRecordRepository;
+        this.vesselRepository = vesselRepository;
     }
 
-    @Async
-    public void add(PostEntity postEntity, List<PostApiClientDto> postApiClientDtoList) {
-        for (int i = 0; i < postApiClientDtoList.size(); i++) {
-           vesselRecordRepository.save(VesselRecordEntity.toEntity(postEntity.getVesselEntities().get(i), postApiClientDtoList.get(i)));
-       }
+    public void add(List<VesselDto> vesselDtoList) {
+        for (VesselDto vesselDto: vesselDtoList) {
+            VesselEntity vesselEntity = vesselRepository.findByMmsi(vesselDto.getMmsi());
+            vesselRecordRepository.save(VesselRecordMapper.INSTANCE.toEntity(vesselDto, vesselEntity));
+        }
     }
 }

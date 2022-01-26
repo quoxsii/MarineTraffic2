@@ -1,9 +1,9 @@
 package com.quoxsii.marinetraffic.dtos;
 
 /**
- * Класс объект таблицы данных API клиента поста.
+ * Класс объект передачи данных судна.
  */
-public class PostApiClientDto {
+public class VesselDto {
     /**
      * Поле морской идентификатор мобильной службы.
      */
@@ -90,7 +90,7 @@ public class PostApiClientDto {
     private String msgTime;
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#mmsi}.
+     * Функция получения значения поля {@link VesselDto#mmsi}.
      * @return возвращает морской идентификатор мобильной службы судна.
      */
     public String getMmsi() {
@@ -98,7 +98,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#mmsi}.
+     * Процедура определения морского идентификатора мобильной службы судна {@link VesselDto#mmsi}.
      * @param mmsi морской идентификатор мобильной службы судна.
      */
     public void setMmsi(String mmsi) {
@@ -106,7 +106,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#country}.
+     * Функция получения значения поля {@link VesselDto#country}.
      * @return возвращает страну судна.
      */
     public String getCountry() {
@@ -114,7 +114,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#country}.
+     * Процедура определения страны судна {@link VesselDto#country}.
      * @param country страна судна.
      */
     public void setCountry(String country) {
@@ -122,7 +122,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#length}.
+     * Функция получения значения поля {@link VesselDto#length}.
      * @return возвращает длину судна.
      */
     public Integer getLength() {
@@ -130,7 +130,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#length}.
+     * Процедура определения длины судна {@link VesselDto#length}.
      * @param length длина судна.
      */
     public void setLength(Integer length) {
@@ -138,7 +138,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#width}.
+     * Функция получения значения поля {@link VesselDto#width}.
      * @return возвращает ширину судна.
      */
     public Integer getWidth() {
@@ -146,7 +146,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#width}.
+     * Процедура определения ширины судна {@link VesselDto#width}.
      * @param width ширина судна.
      */
     public void setWidth(Integer width) {
@@ -154,7 +154,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#draught}.
+     * Функция получения значения поля {@link VesselDto#draught}.
      * @return возвращает осадку судна.
      */
     public Float getDraught() {
@@ -162,7 +162,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#draught}.
+     * Процедура определения осадки судна {@link VesselDto#draught}.
      * @param draught осадка судна.
      */
     public void setDraught(Float draught) {
@@ -170,7 +170,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#callSign}.
+     * Функция получения значения поля {@link VesselDto#callSign}.
      * @return возвращает позывной судна.
      */
     public String getCallSign() {
@@ -178,7 +178,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#callSign}.
+     * Процедура определения позывного судна {@link VesselDto#callSign}.
      * @param callSign позывной судна.
      */
     public void setCallSign(String callSign) {
@@ -186,7 +186,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#typeCode}.
+     * Функция получения значения поля {@link VesselDto#typeCode}.
      * @return возвращает код типа судна.
      */
     public Integer getTypeCode() {
@@ -194,7 +194,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#typeCode}.
+     * Процедура определения кода типа судна {@link VesselDto#typeCode}.
      * @param typeCode код типа судна.
      */
     public void setTypeCode(Integer typeCode) {
@@ -202,7 +202,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#type}.
+     * Функция получения значения поля {@link VesselDto#type}.
      * @return возвращает тип судна.
      */
     public String getType() {
@@ -210,7 +210,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#type}.
+     * Процедура определения типа судна {@link VesselDto#type}.
      * @param type тип судна.
      */
     public void setType(String type) {
@@ -218,7 +218,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#typeDetail}.
+     * Функция получения значения поля {@link VesselDto#typeDetail}.
      * @return возвращает подробности по типу судна.
      */
     public String getTypeDetail() {
@@ -226,7 +226,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#typeDetail}.
+     * Процедура определения подробностей типа судна {@link VesselDto#typeDetail}.
      * @param typeDetail подробности типа судна.
      */
     public void setTypeDetail(String typeDetail) {
@@ -234,7 +234,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#name}.
+     * Функция получения значения поля {@link VesselDto#name}.
      * @return возвращает название судна.
      */
     public String getName() {
@@ -242,7 +242,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения сущности поста {@link PostApiClientDto#name}.
+     * Процедура определения названия судна {@link VesselDto#name}.
      * @param name название судна.
      */
     public void setName(String name) {
@@ -250,7 +250,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#lat}.
+     * Функция получения значения поля {@link VesselDto#lat}.
      * @return возвращает широту судна.
      */
     public Float getLat() {
@@ -258,7 +258,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#lat}.
+     * Процедура определения широты судна {@link VesselDto#lat}.
      * @param lat широта судна.
      */
     public void setLat(Float lat) {
@@ -266,7 +266,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#lon}.
+     * Функция получения значения поля {@link VesselDto#lon}.
      * @return возвращает долготу судна.
      */
     public Float getLon() {
@@ -274,7 +274,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#lon}.
+     * Процедура определения долготы судна {@link VesselDto#lon}.
      * @param lon долгота судна.
      */
     public void setLon(Float lon) {
@@ -282,7 +282,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#cog}.
+     * Функция получения значения поля {@link VesselDto#cog}.
      * @return возвращает курс судна относительно грунта.
      */
     public Float getCog() {
@@ -290,7 +290,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#cog}.
+     * Процедура определения курса судна относительно грунта {@link VesselDto#cog}.
      * @param cog курс судна относительно грунта.
      */
     public void setCog(Float cog) {
@@ -298,7 +298,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#sog}.
+     * Функция получения значения поля {@link VesselDto#sog}.
      * @return возвращает скорость судна относительно грунта.
      */
     public Float getSog() {
@@ -306,7 +306,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#sog}.
+     * Процедура определения скорости судна относительно грунта {@link VesselDto#sog}.
      * @param sog скорость судна относительно грунта.
      */
     public void setSog(Float sog) {
@@ -314,7 +314,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#trueHeading}.
+     * Функция получения значения поля {@link VesselDto#trueHeading}.
      * @return возвращает курс судна.
      */
     public Integer getTrueHeading() {
@@ -322,7 +322,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#trueHeading}.
+     * Процедура определения курса судна {@link VesselDto#trueHeading}.
      * @param trueHeading курс судна.
      */
     public void setTrueHeading(Integer trueHeading) {
@@ -330,7 +330,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#eta}.
+     * Функция получения значения поля {@link VesselDto#eta}.
      * @return возвращает ожидаемое время прибытия судна.
      */
     public String getEta() {
@@ -338,7 +338,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#eta}.
+     * Процедура определения времени прибытия судна {@link VesselDto#eta}.
      * @param eta ожидаемое время прибытия судна.
      */
     public void setEta(String eta) {
@@ -346,7 +346,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#rot}.
+     * Функция получения значения поля {@link VesselDto#rot}.
      * @return возвращает индикатор скорости поворота судна.
      */
     public Float getRot() {
@@ -354,7 +354,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#rot}.
+     * Процедура определения скорости поворота судна {@link VesselDto#rot}.
      * @param rot индикатор скорости поворота судна.
      */
     public void setRot(Float rot) {
@@ -362,7 +362,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#navStateCode}.
+     * Функция получения значения поля {@link VesselDto#navStateCode}.
      * @return возвращает код состояния навигации судна.
      */
     public Integer getNavStateCode() {
@@ -370,7 +370,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#navStateCode}.
+     * Процедура определения кода состояния навигации судна {@link VesselDto#navStateCode}.
      * @param navStateCode код состояния навигации судна.
      */
     public void setNavStateCode(Integer navStateCode) {
@@ -378,7 +378,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#navState}.
+     * Функция получения значения поля {@link VesselDto#navState}.
      * @return возвращает состояние навигации судна.
      */
     public String getNavState() {
@@ -386,7 +386,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#navState}.
+     * Процедура определения состояния навигации судна {@link VesselDto#navState}.
      * @param navState состояние навигации судна.
      */
     public void setNavState(String navState) {
@@ -394,7 +394,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#destination}.
+     * Функция получения значения поля {@link VesselDto#destination}.
      * @return возвращает пункт назначения судна.
      */
     public String getDestination() {
@@ -402,7 +402,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#destination}.
+     * Процедура определения пункта назначения судна {@link VesselDto#destination}.
      * @param destination пункт назначения судна.
      */
     public void setDestination(String destination) {
@@ -410,7 +410,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Функция получения значения поля {@link PostApiClientDto#msgTime}.
+     * Функция получения значения поля {@link VesselDto#msgTime}.
      * @return возвращает время сообщения от судна.
      */
     public String getMsgTime() {
@@ -418,7 +418,7 @@ public class PostApiClientDto {
     }
 
     /**
-     * Процедура определения широты судна {@link PostApiClientDto#msgTime}.
+     * Процедура определения времени сообщения от судна {@link VesselDto#msgTime}.
      * @param msgTime время сообщения от судна.
      */
     public void setMsgTime(String msgTime) {

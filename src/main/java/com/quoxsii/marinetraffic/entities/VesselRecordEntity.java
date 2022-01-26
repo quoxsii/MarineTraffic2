@@ -1,7 +1,5 @@
 package com.quoxsii.marinetraffic.entities;
 
-import com.quoxsii.marinetraffic.dtos.PostApiClientDto;
-
 import javax.persistence.*;
 
 /**
@@ -66,30 +64,7 @@ public class VesselRecordEntity {
      */
     @ManyToOne
     @JoinColumn(name = "vessel_id", nullable = false)
-    private VesselEntity vessel;
-
-    /**
-     * Функция конвертации объекта таблицы данных в сущность запись по судну.
-     * @param vessel сущность судно.
-     * @param dto объект таблицы данных.
-     * @return возвращает сущность запись по судну.
-     */
-    public static VesselRecordEntity toEntity(VesselEntity vessel, PostApiClientDto dto) {
-        VesselRecordEntity entity = new VesselRecordEntity();
-        entity.setLat(dto.getLat());
-        entity.setLon(dto.getLon());
-        entity.setCog(dto.getCog());
-        entity.setSog(dto.getSog());
-        entity.setTrueHeading(dto.getTrueHeading());
-        entity.setEta(dto.getEta());
-        entity.setRot(dto.getRot());
-        entity.setNavStateCode(dto.getNavStateCode());
-        entity.setNavState(dto.getNavState());
-        entity.setDestination(dto.getDestination());
-        entity.setMsgTime(dto.getMsgTime());
-        entity.setVessel(vessel);
-        return entity;
-    }
+    private VesselEntity vesselEntity;
 
     /**
      * Конструктор - создание нового объекта.
@@ -98,19 +73,19 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRecordEntity#vessel}.
+     * Функция получения значения поля {@link VesselRecordEntity#vesselEntity}.
      * @return возвращает сущность судно.
      */
-    public VesselEntity getVessel() {
-        return vessel;
+    public VesselEntity getVesselEntity() {
+        return vesselEntity;
     }
 
     /**
-     * Процедура определения сущности судна {@link VesselRecordEntity#vessel}.
-     * @param vessel сущность судно.
+     * Процедура определения сущности судна {@link VesselRecordEntity#vesselEntity}.
+     * @param vesselEntity сущность судно.
      */
-    public void setVessel(VesselEntity vessel) {
-        this.vessel = vessel;
+    public void setVesselEntity(VesselEntity vesselEntity) {
+        this.vesselEntity = vesselEntity;
     }
 
     /**
@@ -154,7 +129,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#lon}.
+     * Процедура определения долготы судна {@link VesselRecordEntity#lon}.
      * @param lon долгота судна.
      */
     public void setLon(Float lon) {
@@ -170,7 +145,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#cog}.
+     * Процедура определения курса судна относительно грунта {@link VesselRecordEntity#cog}.
      * @param cog курс судна относительно грунта.
      */
     public void setCog(Float cog) {
@@ -186,7 +161,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#sog}.
+     * Процедура определения скорости судна относительно грунта {@link VesselRecordEntity#sog}.
      * @param sog скорость судна относительно грунта.
      */
     public void setSog(Float sog) {
@@ -202,7 +177,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#trueHeading}.
+     * Процедура определения курса судна {@link VesselRecordEntity#trueHeading}.
      * @param trueHeading курс судна.
      */
     public void setTrueHeading(Integer trueHeading) {
@@ -218,7 +193,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#eta}.
+     * Процедура определения времени прибытия судна {@link VesselRecordEntity#eta}.
      * @param eta ожидаемое время прибытия судна.
      */
     public void setEta(String eta) {
@@ -234,7 +209,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#rot}.
+     * Процедура определения скорости поворота судна {@link VesselRecordEntity#rot}.
      * @param rot индикатор скорости поворота судна.
      */
     public void setRot(Float rot) {
@@ -250,7 +225,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#navStateCode}.
+     * Процедура определения кода состояния навигации судна {@link VesselRecordEntity#navStateCode}.
      * @param navStateCode код состояния навигации судна.
      */
     public void setNavStateCode(Integer navStateCode) {
@@ -266,7 +241,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#navState}.
+     * Процедура определения состояния навигации судна {@link VesselRecordEntity#navState}.
      * @param navState состояние навигации судна.
      */
     public void setNavState(String navState) {
@@ -282,7 +257,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#destination}.
+     * Процедура определения пункта назначения судна {@link VesselRecordEntity#destination}.
      * @param destination пункт назначения судна.
      */
     public void setDestination(String destination) {
@@ -298,7 +273,7 @@ public class VesselRecordEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRecordEntity#msgTime}.
+     * Процедура определения времени сообщения от судна {@link VesselRecordEntity#msgTime}.
      * @param msgTime время сообщения от судна.
      */
     public void setMsgTime(String msgTime) {

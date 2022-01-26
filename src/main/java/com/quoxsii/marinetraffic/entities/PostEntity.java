@@ -27,8 +27,8 @@ public class PostEntity {
     /**
      * Поле список сущностей суден {@link VesselEntity}.
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<VesselEntity> vesselEntities;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postEntity")
+    private List<VesselEntity> vesselEntityList;
 
     /**
      * Конструктор - создание нового объекта.
@@ -37,19 +37,19 @@ public class PostEntity {
     }
 
     /**
-     * Функция получения значения поля {@link PostEntity#vesselEntities}.
+     * Функция получения значения поля {@link PostEntity#vesselEntityList}.
      * @return возвращает список сущностей суден.
      */
-    public List<VesselEntity> getVesselEntities() {
-        return vesselEntities;
+    public List<VesselEntity> getVesselEntityList() {
+        return vesselEntityList;
     }
 
     /**
-     * Процедура определения сущностей судов {@link PostEntity#vesselEntities}.
-     * @param vesselEntities список сущностей судов.
+     * Процедура определения сущностей судов {@link PostEntity#vesselEntityList}.
+     * @param vesselEntityList список сущностей судов.
      */
-    public void setVesselEntities(List<VesselEntity> vesselEntities) {
-        this.vesselEntities = vesselEntities;
+    public void setVesselEntityList(List<VesselEntity> vesselEntityList) {
+        this.vesselEntityList = vesselEntityList;
     }
 
     /**

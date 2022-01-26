@@ -1,7 +1,5 @@
 package com.quoxsii.marinetraffic.entities;
 
-import com.quoxsii.marinetraffic.dtos.PostApiClientDto;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -63,35 +61,13 @@ public class VesselEntity {
      */
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
-    private PostEntity post;
+    private PostEntity postEntity;
 
     /**
      * Поле список сущностей записей по судну {@link VesselRecordEntity}.
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vessel")
-    private List<VesselRecordEntity> vesselRecordEntities;
-
-    /**
-     * Функция конвертации объекта таблицы данных в сущность судно.
-     * @param post сущность пост.
-     * @param dto объект таблицы данных.
-     * @return возвращает сущность судно.
-     */
-    public static VesselEntity toEntity(PostEntity post, PostApiClientDto dto) {
-        VesselEntity entity = new VesselEntity();
-        entity.setMmsi(dto.getMmsi());
-        entity.setCountry(dto.getCountry());
-        entity.setLength(dto.getLength());
-        entity.setWidth(dto.getWidth());
-        entity.setDraught(dto.getDraught());
-        entity.setCallSign(dto.getCallSign());
-        entity.setTypeCode(dto.getTypeCode());
-        entity.setType(dto.getType());
-        entity.setTypeDetail(dto.getTypeDetail());
-        entity.setName(dto.getName());
-        entity.setPost(post);
-        return entity;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vesselEntity")
+    private List<VesselRecordEntity> vesselRecordEntityList;
 
     /**
      * Конструктор - создание нового объекта.
@@ -99,41 +75,40 @@ public class VesselEntity {
     public VesselEntity() {
     }
 
-
     /**
-     * Функция получения значения поля {@link VesselEntity#post}.
+     * Функция получения значения поля {@link VesselEntity#postEntity}.
      * @return возвращает сущность пост.
      */
-    public PostEntity getPost() {
-        return post;
+    public PostEntity getPostEntity() {
+        return postEntity;
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#post}.
-     * @param post сущность пост.
+     * Процедура определения сущности поста {@link VesselEntity#postEntity}.
+     * @param postEntity сущность пост.
      */
-    public void setPost(PostEntity post) {
-        this.post = post;
+    public void setPostEntity(PostEntity postEntity) {
+        this.postEntity = postEntity;
     }
 
     /**
-     * Функция получения значения поля {@link VesselEntity#vesselRecordEntities}.
-     * @return возвращает список сущностей записей по судну.
+     * Функция получения значения поля {@link VesselEntity#vesselRecordEntityList}.
+     * @return возвращает список сущностей запись по судну.
      */
-    public List<VesselRecordEntity> getVesselRecordEntities() {
-        return vesselRecordEntities;
+    public List<VesselRecordEntity> getVesselRecordEntityList() {
+        return vesselRecordEntityList;
     }
 
     /**
-     * Процедура определения сущностей записей по судну {@link VesselEntity#vesselRecordEntities}.
-     * @param vesselRecordEntities список записоей по судну.
+     * Процедура определения списка сущностей запись по судну {@link VesselEntity#vesselRecordEntityList}.
+     * @param vesselRecordEntityList список записоей по судну.
      */
-    public void setVesselRecordEntities(List<VesselRecordEntity> vesselRecordEntities) {
-        this.vesselRecordEntities = vesselRecordEntities;
+    public void setVesselRecordEntityList(List<VesselRecordEntity> vesselRecordEntityList) {
+        this.vesselRecordEntityList = vesselRecordEntityList;
     }
 
     /**
-     * Функция получения значения поля {@link VesselEntity#vesselRecordEntities}.
+     * Функция получения значения поля {@link VesselEntity#vesselRecordEntityList}.
      * @return возвращает список сущностей записей по судну.
      */
     public Long getId() {
@@ -141,7 +116,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#id}.
+     * Процедура определения идентификатора сущности судна {@link VesselEntity#id}.
      * @param id идентификатор сущности судна.
      */
     public void setId(Long id) {
@@ -157,7 +132,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#mmsi}.
+     * Процедура определения морского идентификатора мобильной службы судна {@link VesselEntity#mmsi}.
      * @param mmsi морской идентификатор мобильной службы судна.
      */
     public void setMmsi(String mmsi) {
@@ -173,7 +148,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#country}.
+     * Процедура определения страны судна {@link VesselEntity#country}.
      * @param country страна судна.
      */
     public void setCountry(String country) {
@@ -189,7 +164,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#length}.
+     * Процедура определения длины судна {@link VesselEntity#length}.
      * @param length длина судна.
      */
     public void setLength(Integer length) {
@@ -205,7 +180,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#width}.
+     * Процедура определения ширины судна {@link VesselEntity#width}.
      * @param width ширина судна.
      */
     public void setWidth(Integer width) {
@@ -221,7 +196,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#draught}.
+     * Процедура определения осадки судна {@link VesselEntity#draught}.
      * @param draught осадка судна.
      */
     public void setDraught(Float draught) {
@@ -237,7 +212,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#callSign}.
+     * Процедура определения позывного судна {@link VesselEntity#callSign}.
      * @param callSign позывной судна.
      */
     public void setCallSign(String callSign) {
@@ -253,7 +228,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#typeCode}.
+     * Процедура определения кода типа судна {@link VesselEntity#typeCode}.
      * @param typeCode код типа судна.
      */
     public void setTypeCode(Integer typeCode) {
@@ -269,7 +244,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#type}.
+     * Процедура определения типа судна {@link VesselEntity#type}.
      * @param type тип судна.
      */
     public void setType(String type) {
@@ -285,7 +260,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#typeDetail}.
+     * Процедура определения подробностей типа судна {@link VesselEntity#typeDetail}.
      * @param typeDetail подробности типа судна.
      */
     public void setTypeDetail(String typeDetail) {
@@ -301,7 +276,7 @@ public class VesselEntity {
     }
 
     /**
-     * Процедура определения сущности поста {@link VesselEntity#name}.
+     * Процедура определения названия судна {@link VesselEntity#name}.
      * @param name название судна.
      */
     public void setName(String name) {

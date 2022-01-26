@@ -3,6 +3,7 @@ package com.quoxsii.marinetraffic.services;
 import com.quoxsii.marinetraffic.entities.PostEntity;
 import com.quoxsii.marinetraffic.exceptions.PostAlreadyExistsException;
 import com.quoxsii.marinetraffic.exceptions.PostNotFoundException;
+import com.quoxsii.marinetraffic.mappers.PostMapper;
 import com.quoxsii.marinetraffic.models.Post;
 import com.quoxsii.marinetraffic.repositories.PostRepository;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,12 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<Post> getAll() {
+    public List<Post> getAll() throws PostNotFoundException {
         List<PostEntity> entityList = (List<PostEntity>) postRepository.findAll();
-        return entityList.stream().map(Post::toModel).collect(toList());
+        if (entityList.isEmpty()) {
+            throw new PostNotFoundException("Посты не найдены");
+        }
+        return entityList.stream().map(PostMapper.INSTANCE::toModel).collect(toList());
     }
 
     public Post getById(Long id) throws PostNotFoundException {
@@ -30,7 +34,7 @@ public class PostService {
         if(post.isEmpty()) {
             throw new PostNotFoundException("Пост не найден");
         }
-        return Post.toModel(post.get());
+        return PostMapper.INSTANCE.toModel(post.get());
     }
 
     public PostEntity add(String name, String url) throws PostAlreadyExistsException {
@@ -50,7 +54,7 @@ public class PostService {
             throw new PostNotFoundException("Пост не зарегистрирован");
         }
 
-        Post post = Post.toModel(postRepository.findById(id).get());
+        Post post = PostMapper.INSTANCE.toModel(postRepository.findById(id).get());
         postRepository.deleteById(id);
         return post;
     }

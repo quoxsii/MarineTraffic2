@@ -19,6 +19,8 @@ public class PostController {
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(postService.getAll());
+        } catch (PostNotFoundException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
@@ -31,7 +33,7 @@ public class PostController {
         } catch (PostNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
+            return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
 
@@ -53,7 +55,7 @@ public class PostController {
         } catch (PostNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
+            return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
 }

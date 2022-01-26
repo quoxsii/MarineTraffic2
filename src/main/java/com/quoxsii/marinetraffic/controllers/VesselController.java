@@ -1,11 +1,12 @@
 package com.quoxsii.marinetraffic.controllers;
 
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
-import com.quoxsii.marinetraffic.models.Vessel;
 import com.quoxsii.marinetraffic.services.VesselService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/vessel")
@@ -32,7 +33,7 @@ public class VesselController {
         try {
             return ResponseEntity.ok(vesselService.getAll());
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
+            return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
 }
