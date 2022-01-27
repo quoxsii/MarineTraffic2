@@ -3,12 +3,12 @@ package com.quoxsii.marinetraffic.services;
 import com.google.gson.Gson;
 import com.quoxsii.marinetraffic.dtos.VesselDto;
 import com.quoxsii.marinetraffic.entities.PostEntity;
+import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.apache.http.client.HttpClient;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Класс сервис API клиента поста.
+ * Сервис API клиента поста.
  */
 @Service
 public class PostApiClientService {
@@ -39,7 +39,8 @@ public class PostApiClientService {
     public List<VesselDto> parseToList(PostEntity postEntity) {
         try {
             String response = restTemplate.getForObject(new URI(postEntity.getUrl()), String.class);
-            return List.of(new Gson().fromJson(response, VesselDto.class));
+            VesselDto[] vesselDtoArray = new Gson().fromJson(response, VesselDto[].class);
+            return Arrays.asList(vesselDtoArray);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

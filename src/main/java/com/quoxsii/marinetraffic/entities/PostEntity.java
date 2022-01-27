@@ -45,8 +45,8 @@ public class PostEntity {
     }
 
     /**
-     * Процедура определения сущностей судов {@link PostEntity#vesselEntityList}.
-     * @param vesselEntityList список сущностей судов.
+     * Процедура определения сущностей суден {@link PostEntity#vesselEntityList}.
+     * @param vesselEntityList список сущностей суден.
      */
     public void setVesselEntityList(List<VesselEntity> vesselEntityList) {
         this.vesselEntityList = vesselEntityList;

@@ -13,14 +13,29 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Сервис постов.
+ */
 @Service
 public class PostService {
+    /**
+     * Поле репозиторий постов.
+     */
     private final PostRepository postRepository;
 
+    /**
+     * Конструктор - используется для инъекций зависимостей.
+     * @param postRepository репозиторий постов.
+     */
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
+    /**
+     * Функция получения списка всех моделей {@link Post}.
+     * @return возвращает список моделей всех постов.
+     * @throws PostNotFoundException возникает когда в репозитории не зарегистрировано ни одного поста.
+     */
     public List<Post> getAll() throws PostNotFoundException {
         List<PostEntity> entityList = (List<PostEntity>) postRepository.findAll();
         if (entityList.isEmpty()) {
@@ -29,6 +44,12 @@ public class PostService {
         return entityList.stream().map(PostMapper.INSTANCE::toModel).collect(toList());
     }
 
+    /**
+     * Функция получения модели поста по идентификатору.
+     * @param id идентификатор поста.
+     * @return возвращает модель поста.
+     * @throws PostNotFoundException возникает когда в репозитории не зарегистрировано ни одного поста с указанным идентификатором.
+     */
     public Post getById(Long id) throws PostNotFoundException {
         Optional<PostEntity> post = postRepository.findById(id);
         if(post.isEmpty()) {
@@ -37,25 +58,35 @@ public class PostService {
         return PostMapper.INSTANCE.toModel(post.get());
     }
 
-    public PostEntity add(String name, String url) throws PostAlreadyExistsException {
+    /**
+     * Функция добавления поста в репозиторий.
+     * @param name название поста.
+     * @param url ссылка поста.
+     * @return возвращает модель добалвенного поста.
+     * @throws PostAlreadyExistsException возникает когда в репозитории уже зарегистрирован пост с идентичной ссылкой.
+     */
+    public Post add(String name, String url) throws PostAlreadyExistsException {
         if(postRepository.findByUrl(url) != null) {
             throw new PostAlreadyExistsException("Данный пост уже отслеживается");
         }
-
         PostEntity postEntity = new PostEntity();
         postEntity.setName(name);
         postEntity.setUrl(url);
-
-        return postRepository.save(postEntity);
+        postRepository.save(postEntity);
+        return PostMapper.INSTANCE.toModel(postEntity);
     }
 
+    /**
+     * Функция удаления поста из репозитория.
+     * @param id идентификатор поста.
+     * @return возвращает модель удаленного поста.
+     * @throws PostNotFoundException возникает когда в репозитории не зарегистрирован пост с указанным идентификатором.
+     */
     public Post delete(Long id) throws PostNotFoundException {
         if (postRepository.findById(id).isEmpty()) {
             throw new PostNotFoundException("Пост не зарегистрирован");
         }
-
-        Post post = PostMapper.INSTANCE.toModel(postRepository.findById(id).get());
         postRepository.deleteById(id);
-        return post;
+        return PostMapper.INSTANCE.toModel(postRepository.findById(id).get());
     }
 }

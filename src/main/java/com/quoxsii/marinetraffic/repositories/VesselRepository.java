@@ -4,7 +4,7 @@ import com.quoxsii.marinetraffic.entities.VesselEntity;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * Репозиторий сущностей судов.
+ * Репозиторий сущностей суден.
  */
 public interface VesselRepository extends CrudRepository<VesselEntity, Long> {
     /**
@@ -13,4 +13,5 @@ public interface VesselRepository extends CrudRepository<VesselEntity, Long> {
      * @return возвращает сущность судно.
      */
     VesselEntity findByMmsi(String mmsi);
+    Boolean existsByMmsi(String mmsi);
 }

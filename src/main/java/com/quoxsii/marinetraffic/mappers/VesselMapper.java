@@ -26,7 +26,7 @@ public interface VesselMapper {
      * @return возвращает сущность судно.
      */
     @Mapping(source = "vesselDto.name", target = "name")
-    @Mapping(source = "postEntity", target = "postEntity")
+    @Mapping(target = "id", ignore = true)
     VesselEntity toEntity(VesselDto vesselDto, PostEntity postEntity);
 
     /**

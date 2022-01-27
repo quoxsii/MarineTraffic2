@@ -32,6 +32,8 @@ public class VesselController {
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(vesselService.getAll());
+        } catch (VesselNotFoundException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }

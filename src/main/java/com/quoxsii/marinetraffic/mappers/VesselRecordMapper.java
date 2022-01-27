@@ -23,6 +23,6 @@ public interface VesselRecordMapper {
      * @param vesselEntity сущность пост.
      * @return возвращает сущность запись по судну.
      */
-    @Mapping(source = "vesselEntity", target = "vesselEntity")
+    @Mapping(target = "id", ignore = true)
     VesselRecordEntity toEntity(VesselDto vesselDto, VesselEntity vesselEntity);
 }
