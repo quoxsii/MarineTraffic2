@@ -3,11 +3,11 @@ package com.quoxsii.marinetraffic.services;
 import com.quoxsii.marinetraffic.dtos.VesselDto;
 import com.quoxsii.marinetraffic.entities.PostEntity;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
-import com.quoxsii.marinetraffic.entities.VesselRecordEntity;
+import com.quoxsii.marinetraffic.entities.VesselRouteEntity;
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
 import com.quoxsii.marinetraffic.mappers.VesselMapper;
 import com.quoxsii.marinetraffic.models.Vessel;
-import com.quoxsii.marinetraffic.repositories.VesselRecordRepository;
+import com.quoxsii.marinetraffic.repositories.VesselRouteRepository;
 import com.quoxsii.marinetraffic.repositories.VesselRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -25,18 +25,18 @@ public class VesselService {
      */
     private final VesselRepository vesselRepository;
     /**
-     * Поле репозиторий записей по судну.
+     * Поле репозиторий муршрутов судна.
      */
-    private final VesselRecordRepository vesselRecordRepository;
+    private final VesselRouteRepository vesselRouteRepository;
 
     /**
      * Конструктор - используется для инъекций зависимостей.
      * @param vesselRepository репозиторий суден.
-     * @param vesselRecordRepository репозиторий записей по судну.
+     * @param vesselRouteRepository репозиторий муршрутов судна.
      */
-    public VesselService(VesselRepository vesselRepository, VesselRecordRepository vesselRecordRepository) {
+    public VesselService(VesselRepository vesselRepository, VesselRouteRepository vesselRouteRepository) {
         this.vesselRepository = vesselRepository;
-        this.vesselRecordRepository = vesselRecordRepository;
+        this.vesselRouteRepository = vesselRouteRepository;
     }
 
     /**
@@ -51,8 +51,8 @@ public class VesselService {
         }
         List<Vessel> vesselList = new ArrayList<>();
         for (VesselEntity vesselEntity : vesselEntityList) {
-            List<VesselRecordEntity> vesselRecordEntityList = vesselRecordRepository.findByVesselEntity(vesselEntity);
-            vesselList.add(VesselMapper.INSTANCE.toModel(vesselEntity, vesselRecordEntityList.get(vesselRecordEntityList.size() - 1)));
+            List<VesselRouteEntity> vesselRouteEntityList = vesselRouteRepository.findByVesselEntity(vesselEntity);
+            vesselList.add(VesselMapper.INSTANCE.toModel(vesselEntity, vesselRouteEntityList.get(vesselRouteEntityList.size() - 1)));
         }
         return vesselList;
     }
@@ -68,8 +68,8 @@ public class VesselService {
         if(vesselEntity == null) {
             throw new VesselNotFoundException("Судно не найдено");
         }
-        List<VesselRecordEntity> vesselRecordEntityList = vesselRecordRepository.findByVesselEntity(vesselEntity);
-        return VesselMapper.INSTANCE.toModel(vesselEntity, vesselRecordEntityList.get(vesselRecordEntityList.size() - 1));
+        List<VesselRouteEntity> vesselRouteEntityList = vesselRouteRepository.findByVesselEntity(vesselEntity);
+        return VesselMapper.INSTANCE.toModel(vesselEntity, vesselRouteEntityList.get(vesselRouteEntityList.size() - 1));
     }
 
     /**

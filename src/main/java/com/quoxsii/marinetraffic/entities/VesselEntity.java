@@ -64,10 +64,10 @@ public class VesselEntity {
     private PostEntity postEntity;
 
     /**
-     * Поле список сущностей записей по судну {@link VesselRecordEntity}.
+     * Поле список сущностей муршрутов судна {@link VesselRouteEntity}.
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vesselEntity")
-    private List<VesselRecordEntity> vesselRecordEntityList;
+    private List<VesselRouteEntity> vesselRouteEntityList;
 
     /**
      * Конструктор - создание нового объекта.
@@ -92,24 +92,24 @@ public class VesselEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselEntity#vesselRecordEntityList}.
-     * @return возвращает список сущностей запись по судну.
+     * Функция получения значения поля {@link VesselEntity#vesselRouteEntityList}.
+     * @return возвращает список сущностей муршрут судна.
      */
-    public List<VesselRecordEntity> getVesselRecordEntityList() {
-        return vesselRecordEntityList;
+    public List<VesselRouteEntity> getVesselRouteEntityList() {
+        return vesselRouteEntityList;
     }
 
     /**
-     * Процедура определения списка сущностей запись по судну {@link VesselEntity#vesselRecordEntityList}.
-     * @param vesselRecordEntityList список записоей по судну.
+     * Процедура определения списка сущностей муршрут судна {@link VesselEntity#vesselRouteEntityList}.
+     * @param vesselRouteEntityList список маршрутов судна.
      */
-    public void setVesselRecordEntityList(List<VesselRecordEntity> vesselRecordEntityList) {
-        this.vesselRecordEntityList = vesselRecordEntityList;
+    public void setVesselRouteEntityList(List<VesselRouteEntity> vesselRouteEntityList) {
+        this.vesselRouteEntityList = vesselRouteEntityList;
     }
 
     /**
-     * Функция получения значения поля {@link VesselEntity#vesselRecordEntityList}.
-     * @return возвращает список сущностей записей по судну.
+     * Функция получения значения поля {@link VesselEntity#vesselRouteEntityList}.
+     * @return возвращает список сущностей муршрутов судна.
      */
     public Long getId() {
         return id;

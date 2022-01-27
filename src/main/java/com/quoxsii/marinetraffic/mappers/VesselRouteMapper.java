@@ -2,27 +2,27 @@ package com.quoxsii.marinetraffic.mappers;
 
 import com.quoxsii.marinetraffic.dtos.VesselDto;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
-import com.quoxsii.marinetraffic.entities.VesselRecordEntity;
+import com.quoxsii.marinetraffic.entities.VesselRouteEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
- * Интерфейс конвертации для записи по судну.
+ * Интерфейс конвертации для муршруты судна.
  */
 @Mapper
-public interface VesselRecordMapper {
+public interface VesselRouteMapper {
     /**
-     * Объект реализующий интерфейс конвертации для записи по судну.
+     * Объект реализующий интерфейс конвертации для муршруты судна.
      */
-    VesselRecordMapper INSTANCE = Mappers.getMapper( VesselRecordMapper.class );
+    VesselRouteMapper INSTANCE = Mappers.getMapper( VesselRouteMapper.class );
 
     /**
      * Функция конвертации объекта передачи данных в сущность.
      * @param vesselDto объект передачи данных судна.
      * @param vesselEntity сущность пост.
-     * @return возвращает сущность запись по судну.
+     * @return возвращает сущность муршрут судна.
      */
     @Mapping(target = "id", ignore = true)
-    VesselRecordEntity toEntity(VesselDto vesselDto, VesselEntity vesselEntity);
+    VesselRouteEntity toEntity(VesselDto vesselDto, VesselEntity vesselEntity);
 }

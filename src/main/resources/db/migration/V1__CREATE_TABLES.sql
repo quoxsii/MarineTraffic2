@@ -26,7 +26,7 @@ create table vessel (
 );
 CREATE UNIQUE INDEX vessel_id_uindex ON public.vessel (id);
 
-create table vessel_record (
+create table vessel_route (
     id serial not null primary key,
     lat float not null,
     lon float not null,
@@ -40,6 +40,6 @@ create table vessel_record (
     destination varchar(255),
     msg_time varchar(13)
 );
-CREATE UNIQUE INDEX vessel_record_id_uindex ON public.vessel_record (id);
+CREATE UNIQUE INDEX vessel_route_id_uindex ON public.vessel_route (id);
 
 

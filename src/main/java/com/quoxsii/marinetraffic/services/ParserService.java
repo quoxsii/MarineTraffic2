@@ -3,7 +3,6 @@ package com.quoxsii.marinetraffic.services;
 import com.quoxsii.marinetraffic.configs.AsyncConfig;
 import com.quoxsii.marinetraffic.dtos.VesselDto;
 import com.quoxsii.marinetraffic.entities.PostEntity;
-import com.quoxsii.marinetraffic.exceptions.PostNotFoundException;
 import com.quoxsii.marinetraffic.repositories.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +19,15 @@ import java.util.concurrent.Executors;
 @EnableScheduling
 public class ParserService {
     private final VesselService vesselService;
-    private final VesselRecordService vesselRecordService;
+    private final VesselRouteService vesselRouteService;
     private final PostRepository postRepository;
     private final PostApiClientService postApiClientService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AsyncConfig.class);
 
-    public ParserService(VesselService vesselService, VesselRecordService vesselRecordService, PostRepository postRepository, PostApiClientService postApiClientService) {
+    public ParserService(VesselService vesselService, VesselRouteService vesselRouteService, PostRepository postRepository, PostApiClientService postApiClientService) {
         this.vesselService = vesselService;
-        this.vesselRecordService = vesselRecordService;
+        this.vesselRouteService = vesselRouteService;
         this.postRepository = postRepository;
         this.postApiClientService = postApiClientService;
     }
@@ -37,7 +36,7 @@ public class ParserService {
     public void uploadData(PostEntity postEntity) {
         List<VesselDto> vesselDtoList = postApiClientService.parseToList(postEntity);
         vesselService.update(postEntity, vesselDtoList);
-        vesselRecordService.add(vesselDtoList);
+        vesselRouteService.add(vesselDtoList);
         LOGGER.info(postEntity.getName() + " port parsed");
     }
 
