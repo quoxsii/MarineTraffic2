@@ -39,6 +39,8 @@ public class VesselRouteService {
      * @param vesselDtoList список объектов передачи данных судна.
      */
     @Async
+    //По идее метод излишен, так как предполагается, что запись трека производится автоматически
+    // при записи судная. Если судно уже в базе существует, то просто добавляется новая точка трека/динамической инфы
     public void add(List<VesselDto> vesselDtoList) {
         for (VesselDto vesselDto: vesselDtoList) {
             VesselEntity vesselEntity = vesselRepository.findByMmsi(vesselDto.getMmsi());

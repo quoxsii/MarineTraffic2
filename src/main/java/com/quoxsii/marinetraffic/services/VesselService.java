@@ -50,6 +50,14 @@ public class VesselService {
             throw new VesselNotFoundException("Судна не найдены");
         }
         List<Vessel> vesselList = new ArrayList<>();
+        //зачем при получении всез судов получать сразу все изменения из динамических параметров?
+        // Достаточно получить лишь последний актуальный показатель его динамических данных
+        // Да и в идеале при получении судна из базы у тебя должны автоматически в объект попадать
+        // связанная с ним информация о его динамических параметрах без отдельного на это запроса
+        // Подумай над этим
+        // +++
+        // Если у тебя в базе будет 100к судов и по ним 10к записей треков для каждого, то ты
+        // выполнишь 100к * 10к + 1 запрос. А теперь подумай, будет ли база тормозить если к ней делать столько запросов?)
         for (VesselEntity vesselEntity : vesselEntityList) {
             List<VesselRouteEntity> vesselRouteEntityList = vesselRouteRepository.findByVesselEntity(vesselEntity);
             vesselList.add(VesselMapper.INSTANCE.toModel(vesselEntity, vesselRouteEntityList.get(vesselRouteEntityList.size() - 1)));
@@ -68,6 +76,9 @@ public class VesselService {
         if(vesselEntity == null) {
             throw new VesselNotFoundException("Судно не найдено");
         }
+        // аналогично методу выше, хибернейт должен автоматически брать связанную сущность VesselRouteEntity из базы
+        // при запросе инфы о судне - это в данном случае
+        // Если же ты сделаешь метод типа "Дай мне статическую информацию о судне", то VesselRouteEntity туда попадать не должен
         List<VesselRouteEntity> vesselRouteEntityList = vesselRouteRepository.findByVesselEntity(vesselEntity);
         return VesselMapper.INSTANCE.toModel(vesselEntity, vesselRouteEntityList.get(vesselRouteEntityList.size() - 1));
     }
@@ -80,7 +91,11 @@ public class VesselService {
     @Async
     public void update(PostEntity postEntity, List<VesselDto> vesselDtoList) {
         for (VesselDto vesselDto : vesselDtoList) {
+            //зачем эта проверка?
+            //если судна нет, то просто запиши его как новое
             if (!vesselRepository.existsByMmsi(vesselDto.getMmsi())) {
+                //тут разве из VesselDto заполняется инфа VesselRouteEntity ?
+                //если да, то маппер какой-то божественный получается)
                 vesselRepository.save(VesselMapper.INSTANCE.toEntity(vesselDto, postEntity));
             }
         }

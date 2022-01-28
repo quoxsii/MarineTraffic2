@@ -17,7 +17,10 @@ public interface VesselMapper {
     /**
      * Объект реализующий интерфейс конвертации для судна.
      */
-    VesselMapper INSTANCE = Mappers.getMapper( VesselMapper.class );
+    //не обязательно делать этот инстанс, а можно напрямую обращаться в методы VesselMapper
+    // спринг сам проинжектирует нужную реализацию интерфейса
+    // Это относится ко всем маперам
+    VesselMapper INSTANCE = Mappers.getMapper(VesselMapper.class);
 
     /**
      * Функция конвертации объекта передачи данных в сущность.

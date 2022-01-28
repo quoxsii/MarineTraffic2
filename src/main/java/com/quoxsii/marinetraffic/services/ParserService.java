@@ -20,6 +20,8 @@ import java.util.concurrent.Executors;
 public class ParserService {
     private final VesselService vesselService;
     private final VesselRouteService vesselRouteService;
+
+    //Здесь использовать лучше PostService. В этом везде используешь сервисы, а тут сам репозиторий) Зачем - хз
     private final PostRepository postRepository;
     private final PostApiClientService postApiClientService;
 
@@ -43,6 +45,9 @@ public class ParserService {
     @Scheduled(fixedRate = 120000)
     protected void parserScheduler() {
         //ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(4);
+        //Ты в отдельном потоке создаешь еще Executor. А зачем? Можно же просто использовать ExecutorService.
+        // Без аннотации @Scheduled
+        // Плюс, что делать, если нам нужно будет отключить поток с опросом?
         ExecutorService service = Executors.newFixedThreadPool(4);
 
         class Task implements Runnable {
@@ -55,6 +60,8 @@ public class ParserService {
 
         for (PostEntity postEntity : postRepository.findAll()) {
             //executor.scheduleAtFixedRate(new Task(postEntity), 1, 20, TimeUnit.SECONDS);
+            //создавать каждый раз таску, чтобы запросить излишне
+            // В принципе ты на правильном пути, но попробуй оптимизировать
             service.execute(new Task(postEntity));
         }
     }

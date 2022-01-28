@@ -15,6 +15,8 @@ public class AsyncConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(AsyncConfig.class);
 
     @Bean (name = "taskExecutor")
+    // Прикольный конфиг, но почему ты решил определить именно эти параметры?
+    // Да и зачем тебе здесь конфиг Executor'а ?
     public Executor taskExecutor() {
         LOGGER.debug("Creating Async Task Executor");
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
