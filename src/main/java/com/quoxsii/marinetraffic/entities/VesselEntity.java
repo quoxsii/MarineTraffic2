@@ -1,13 +1,12 @@
 package com.quoxsii.marinetraffic.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Класс сущность судно.
  */
 @Entity
-@Table(name = "vessel")
+@Table(name = "vessel", uniqueConstraints = @UniqueConstraint(columnNames = "mmsi"))
 public class VesselEntity {
     /**
      * Поле идентификатор.
@@ -64,12 +63,6 @@ public class VesselEntity {
     private PostEntity postEntity;
 
     /**
-     * Поле список сущностей муршрутов судна {@link VesselRouteEntity}.
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vesselEntity")
-    private List<VesselRouteEntity> vesselRouteEntityList;
-
-    /**
      * Конструктор - создание нового объекта.
      */
     public VesselEntity() {
@@ -92,24 +85,8 @@ public class VesselEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselEntity#vesselRouteEntityList}.
-     * @return возвращает список сущностей муршрут судна.
-     */
-    public List<VesselRouteEntity> getVesselRouteEntityList() {
-        return vesselRouteEntityList;
-    }
-
-    /**
-     * Процедура определения списка сущностей муршрут судна {@link VesselEntity#vesselRouteEntityList}.
-     * @param vesselRouteEntityList список маршрутов судна.
-     */
-    public void setVesselRouteEntityList(List<VesselRouteEntity> vesselRouteEntityList) {
-        this.vesselRouteEntityList = vesselRouteEntityList;
-    }
-
-    /**
-     * Функция получения значения поля {@link VesselEntity#vesselRouteEntityList}.
-     * @return возвращает список сущностей муршрутов судна.
+     * Функция получения значения поля {@link VesselEntity#id}.
+     * @return возвращает идентификатор сущности судна.
      */
     public Long getId() {
         return id;

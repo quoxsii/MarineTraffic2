@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
     private final PostService postService;
 
@@ -15,7 +15,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping(path = "/")
+    @GetMapping
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(postService.getAll());
@@ -26,8 +26,8 @@ public class PostController {
         }
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<?> getById(@RequestParam Long id) {
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(postService.getById(id));
         } catch (PostNotFoundException ex) {
@@ -37,7 +37,7 @@ public class PostController {
         }
     }
 
-    @PostMapping(params = {"name", "url"})
+    @PostMapping(path = "/add", params = {"name", "url"})
     public ResponseEntity<?> add(@RequestParam String name, @RequestParam String url) {
         try {
             return ResponseEntity.ok(postService.add(name, url));
@@ -48,7 +48,7 @@ public class PostController {
         }
     }
 
-    @DeleteMapping(params = "id")
+    @DeleteMapping(path = "/delete", params = "id")
     public ResponseEntity<?> delete(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(postService.delete(id));

@@ -4,12 +4,12 @@ import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
 import com.quoxsii.marinetraffic.services.VesselService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/vessel")
+@RequestMapping("/api/vessel")
 public class VesselController {
     private final VesselService vesselService;
 
@@ -17,10 +17,10 @@ public class VesselController {
         this.vesselService = vesselService;
     }
 
-    @GetMapping(params = "mmsi")
-    public ResponseEntity<?> getByMmsi(@RequestParam String mmsi) {
+    @GetMapping
+    public ResponseEntity<?> getAll() {
         try {
-            return ResponseEntity.ok(vesselService.getByMmsi(mmsi));
+            return ResponseEntity.ok(vesselService.getAll());
         } catch (VesselNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
@@ -28,10 +28,10 @@ public class VesselController {
         }
     }
 
-    @GetMapping(path = "/")
-    public ResponseEntity<?> getAll() {
+    @GetMapping(path = "/{mmsi}")
+    public ResponseEntity<?> getByMmsi(@PathVariable String mmsi) {
         try {
-            return ResponseEntity.ok(vesselService.getAll());
+            return ResponseEntity.ok(vesselService.getByMmsi(mmsi));
         } catch (VesselNotFoundException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {

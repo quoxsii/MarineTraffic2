@@ -1,13 +1,12 @@
 package com.quoxsii.marinetraffic.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Класс сущность пост.
  */
 @Entity
-@Table(name = "post")
+@Table(name = "post", uniqueConstraints = @UniqueConstraint(columnNames = "url"))
 public class PostEntity {
     /**
      * Поле идентификатор.
@@ -25,31 +24,9 @@ public class PostEntity {
     private String url;
 
     /**
-     * Поле список сущностей суден {@link VesselEntity}.
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postEntity")
-    private List<VesselEntity> vesselEntityList;
-
-    /**
      * Конструктор - создание нового объекта.
      */
     public PostEntity() {
-    }
-
-    /**
-     * Функция получения значения поля {@link PostEntity#vesselEntityList}.
-     * @return возвращает список сущностей суден.
-     */
-    public List<VesselEntity> getVesselEntityList() {
-        return vesselEntityList;
-    }
-
-    /**
-     * Процедура определения сущностей суден {@link PostEntity#vesselEntityList}.
-     * @param vesselEntityList список сущностей суден.
-     */
-    public void setVesselEntityList(List<VesselEntity> vesselEntityList) {
-        this.vesselEntityList = vesselEntityList;
     }
 
     /**

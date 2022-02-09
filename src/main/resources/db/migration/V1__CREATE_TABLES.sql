@@ -7,13 +7,13 @@ insert into hibernate_sequence values (1);
 create table post (
     id serial not null primary key,
     name varchar(64),
-    url text not null
+    url text unique not null
 );
 CREATE UNIQUE INDEX post_id_uindex ON public.post (id);
 
 create table vessel (
     id serial not null primary key,
-    mmsi varchar(9) not null,
+    mmsi varchar(9) unique not null,
     country varchar(255),
     length int,
     width int,

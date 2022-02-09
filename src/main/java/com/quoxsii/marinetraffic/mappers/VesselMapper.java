@@ -7,21 +7,12 @@ import com.quoxsii.marinetraffic.entities.VesselRouteEntity;
 import com.quoxsii.marinetraffic.models.Vessel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 /**
  * Интерфейс конвертации для судна.
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface VesselMapper {
-    /**
-     * Объект реализующий интерфейс конвертации для судна.
-     */
-    //не обязательно делать этот инстанс, а можно напрямую обращаться в методы VesselMapper
-    // спринг сам проинжектирует нужную реализацию интерфейса
-    // Это относится ко всем маперам
-    VesselMapper INSTANCE = Mappers.getMapper(VesselMapper.class);
-
     /**
      * Функция конвертации объекта передачи данных в сущность.
      * @param vesselDto объект передачи данных судна.

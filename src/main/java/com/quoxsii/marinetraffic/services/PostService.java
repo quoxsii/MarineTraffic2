@@ -22,13 +22,19 @@ public class PostService {
      * Поле репозиторий постов.
      */
     private final PostRepository postRepository;
+    /**
+     * Поле маппер постов.
+     */
+    private final PostMapper postMapper;
 
     /**
      * Конструктор - используется для инъекций зависимостей.
      * @param postRepository репозиторий постов.
+     * @param postMapper маппер постов.
      */
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostMapper postMapper) {
         this.postRepository = postRepository;
+        this.postMapper = postMapper;
     }
 
     /**
@@ -39,9 +45,9 @@ public class PostService {
     public List<Post> getAll() throws PostNotFoundException {
         List<PostEntity> entityList = (List<PostEntity>) postRepository.findAll();
         if (entityList.isEmpty()) {
-            throw new PostNotFoundException("Посты не найдены");
+            throw new PostNotFoundException("Не найдено зарегистрированных постов");
         }
-        return entityList.stream().map(PostMapper.INSTANCE::toModel).collect(toList());
+        return entityList.stream().map(postMapper::toModel).collect(toList());
     }
 
     /**
@@ -53,9 +59,9 @@ public class PostService {
     public Post getById(Long id) throws PostNotFoundException {
         Optional<PostEntity> post = postRepository.findById(id);
         if(post.isEmpty()) {
-            throw new PostNotFoundException("Пост не найден");
+            throw new PostNotFoundException("Пост не зарегистрирован");
         }
-        return PostMapper.INSTANCE.toModel(post.get());
+        return postMapper.toModel(post.get());
     }
 
     /**
@@ -73,7 +79,7 @@ public class PostService {
         postEntity.setName(name);
         postEntity.setUrl(url);
         postRepository.save(postEntity);
-        return PostMapper.INSTANCE.toModel(postEntity);
+        return postMapper.toModel(postEntity);
     }
 
     /**
@@ -87,6 +93,6 @@ public class PostService {
             throw new PostNotFoundException("Пост не зарегистрирован");
         }
         postRepository.deleteById(id);
-        return PostMapper.INSTANCE.toModel(postRepository.findById(id).get());
+        return postMapper.toModel(postRepository.findById(id).get());
     }
 }

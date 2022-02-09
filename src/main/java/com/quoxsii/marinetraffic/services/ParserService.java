@@ -1,68 +1,30 @@
 package com.quoxsii.marinetraffic.services;
 
-import com.quoxsii.marinetraffic.configs.AsyncConfig;
-import com.quoxsii.marinetraffic.dtos.VesselDto;
-import com.quoxsii.marinetraffic.entities.PostEntity;
-import com.quoxsii.marinetraffic.repositories.PostRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import com.quoxsii.marinetraffic.models.Post;
+import com.quoxsii.marinetraffic.tasks.ParserTask;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 @Service
-@EnableScheduling
 public class ParserService {
-    private final VesselService vesselService;
-    private final VesselRouteService vesselRouteService;
+    private final PostService postService;
+    private final ParserTask parserTask;
 
-    //Здесь использовать лучше PostService. В этом везде используешь сервисы, а тут сам репозиторий) Зачем - хз
-    private final PostRepository postRepository;
-    private final PostApiClientService postApiClientService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncConfig.class);
-
-    public ParserService(VesselService vesselService, VesselRouteService vesselRouteService, PostRepository postRepository, PostApiClientService postApiClientService) {
-        this.vesselService = vesselService;
-        this.vesselRouteService = vesselRouteService;
-        this.postRepository = postRepository;
-        this.postApiClientService = postApiClientService;
+    public ParserService(PostService postService, ParserTask parserTask) {
+        this.postService = postService;
+        this.parserTask = parserTask;
     }
 
-    @Async
-    public void uploadData(PostEntity postEntity) {
-        List<VesselDto> vesselDtoList = postApiClientService.parseToList(postEntity);
-        vesselService.update(postEntity, vesselDtoList);
-        vesselRouteService.add(vesselDtoList);
-        LOGGER.info(postEntity.getName() + " port parsed");
-    }
-
-    @Scheduled(fixedRate = 120000)
-    protected void parserScheduler() {
-        //ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(4);
-        //Ты в отдельном потоке создаешь еще Executor. А зачем? Можно же просто использовать ExecutorService.
-        // Без аннотации @Scheduled
-        // Плюс, что делать, если нам нужно будет отключить поток с опросом?
-        ExecutorService service = Executors.newFixedThreadPool(4);
-
-        class Task implements Runnable {
-            PostEntity postEntity;
-            Task(PostEntity p) { postEntity = p; }
-            public void run() {
-                uploadData(postEntity);
+    @Bean
+    public CommandLineRunner schedulingRunner(ThreadPoolTaskScheduler scheduler) {
+        return args -> {
+            for (Post post : postService.getAll())
+            {
+                parserTask.setPost(post);
+                scheduler.scheduleAtFixedRate(parserTask, 5000);
             }
-        }
-
-        for (PostEntity postEntity : postRepository.findAll()) {
-            //executor.scheduleAtFixedRate(new Task(postEntity), 1, 20, TimeUnit.SECONDS);
-            //создавать каждый раз таску, чтобы запросить излишне
-            // В принципе ты на правильном пути, но попробуй оптимизировать
-            service.execute(new Task(postEntity));
-        }
+        };
     }
 }

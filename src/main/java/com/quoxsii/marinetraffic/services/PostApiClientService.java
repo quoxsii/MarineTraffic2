@@ -2,7 +2,7 @@ package com.quoxsii.marinetraffic.services;
 
 import com.google.gson.Gson;
 import com.quoxsii.marinetraffic.dtos.VesselDto;
-import com.quoxsii.marinetraffic.entities.PostEntity;
+import com.quoxsii.marinetraffic.models.Post;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -33,12 +33,12 @@ public class PostApiClientService {
 
     /**
      * Функция парсинга поста в список объектов передачи данных судна.
-     * @param postEntity сущность пост.
+     * @param post модель пост.
      * @return возвращает список объектов передачи данных судна.
      */
-    public List<VesselDto> parseToList(PostEntity postEntity) {
+    public List<VesselDto> parseToList(Post post) {
         try {
-            String response = restTemplate.getForObject(new URI(postEntity.getUrl()), String.class);
+            String response = restTemplate.getForObject(new URI(post.getUrl()), String.class);
             VesselDto[] vesselDtoArray = new Gson().fromJson(response, VesselDto[].class);
             return Arrays.asList(vesselDtoArray);
         } catch (URISyntaxException e) {

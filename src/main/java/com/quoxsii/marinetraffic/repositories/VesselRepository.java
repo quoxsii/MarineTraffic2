@@ -13,5 +13,4 @@ public interface VesselRepository extends CrudRepository<VesselEntity, Long> {
      * @return возвращает сущность судно.
      */
     VesselEntity findByMmsi(String mmsi);
-    Boolean existsByMmsi(String mmsi);
 }

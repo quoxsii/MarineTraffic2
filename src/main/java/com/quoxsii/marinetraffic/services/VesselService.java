@@ -1,15 +1,15 @@
 package com.quoxsii.marinetraffic.services;
 
 import com.quoxsii.marinetraffic.dtos.VesselDto;
-import com.quoxsii.marinetraffic.entities.PostEntity;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
-import com.quoxsii.marinetraffic.entities.VesselRouteEntity;
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
 import com.quoxsii.marinetraffic.mappers.VesselMapper;
+import com.quoxsii.marinetraffic.mappers.VesselRouteMapper;
+import com.quoxsii.marinetraffic.models.Post;
 import com.quoxsii.marinetraffic.models.Vessel;
-import com.quoxsii.marinetraffic.repositories.VesselRouteRepository;
+import com.quoxsii.marinetraffic.repositories.PostRepository;
 import com.quoxsii.marinetraffic.repositories.VesselRepository;
-import org.springframework.scheduling.annotation.Async;
+import com.quoxsii.marinetraffic.repositories.VesselRouteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +21,14 @@ import java.util.List;
 @Service
 public class VesselService {
     /**
+     * Поле репозиторий постов.
+     */
+    private final PostRepository postRepository;
+    /**
+     * Поле сервис API клиента поста.
+     */
+    private final PostApiClientService postApiClientService;
+    /**
      * Поле репозиторий суден.
      */
     private final VesselRepository vesselRepository;
@@ -28,15 +36,32 @@ public class VesselService {
      * Поле репозиторий муршрутов судна.
      */
     private final VesselRouteRepository vesselRouteRepository;
+    /**
+     * Поле маппер суден.
+     */
+    private final VesselMapper vesselMapper;
+    /**
+     * Поле маппер маршрутов суден.
+     */
+    private final VesselRouteMapper vesselRouteMapper;
+
 
     /**
      * Конструктор - используется для инъекций зависимостей.
+     * @param postRepository репозиторий постов.
+     * @param postApiClientService сервис API клиента поста.
      * @param vesselRepository репозиторий суден.
      * @param vesselRouteRepository репозиторий муршрутов судна.
+     * @param vesselMapper маппер суден.
+     * @param vesselRouteMapper маппер маршрутов суден.
      */
-    public VesselService(VesselRepository vesselRepository, VesselRouteRepository vesselRouteRepository) {
+    public VesselService(PostRepository postRepository, PostApiClientService postApiClientService, VesselRepository vesselRepository, VesselRouteRepository vesselRouteRepository, VesselMapper vesselMapper, VesselRouteMapper vesselRouteMapper) {
+        this.postRepository = postRepository;
+        this.postApiClientService = postApiClientService;
         this.vesselRepository = vesselRepository;
         this.vesselRouteRepository = vesselRouteRepository;
+        this.vesselMapper = vesselMapper;
+        this.vesselRouteMapper = vesselRouteMapper;
     }
 
     /**
@@ -49,18 +74,10 @@ public class VesselService {
         if (vesselEntityList.isEmpty()) {
             throw new VesselNotFoundException("Судна не найдены");
         }
+
         List<Vessel> vesselList = new ArrayList<>();
-        //зачем при получении всез судов получать сразу все изменения из динамических параметров?
-        // Достаточно получить лишь последний актуальный показатель его динамических данных
-        // Да и в идеале при получении судна из базы у тебя должны автоматически в объект попадать
-        // связанная с ним информация о его динамических параметрах без отдельного на это запроса
-        // Подумай над этим
-        // +++
-        // Если у тебя в базе будет 100к судов и по ним 10к записей треков для каждого, то ты
-        // выполнишь 100к * 10к + 1 запрос. А теперь подумай, будет ли база тормозить если к ней делать столько запросов?)
         for (VesselEntity vesselEntity : vesselEntityList) {
-            List<VesselRouteEntity> vesselRouteEntityList = vesselRouteRepository.findByVesselEntity(vesselEntity);
-            vesselList.add(VesselMapper.INSTANCE.toModel(vesselEntity, vesselRouteEntityList.get(vesselRouteEntityList.size() - 1)));
+            vesselList.add(vesselMapper.toModel(vesselEntity, vesselRouteRepository.findTopByVesselEntityOrderByIdDesc(vesselEntity)));
         }
         return vesselList;
     }
@@ -76,28 +93,20 @@ public class VesselService {
         if(vesselEntity == null) {
             throw new VesselNotFoundException("Судно не найдено");
         }
-        // аналогично методу выше, хибернейт должен автоматически брать связанную сущность VesselRouteEntity из базы
-        // при запросе инфы о судне - это в данном случае
-        // Если же ты сделаешь метод типа "Дай мне статическую информацию о судне", то VesselRouteEntity туда попадать не должен
-        List<VesselRouteEntity> vesselRouteEntityList = vesselRouteRepository.findByVesselEntity(vesselEntity);
-        return VesselMapper.INSTANCE.toModel(vesselEntity, vesselRouteEntityList.get(vesselRouteEntityList.size() - 1));
+        return vesselMapper.toModel(vesselEntity, vesselRouteRepository.findTopByVesselEntityOrderByIdDesc(vesselEntity));
     }
 
     /**
      * Процедура обновления спика суден в репозитории.
-     * @param postEntity сущность поста.
-     * @param vesselDtoList список объектов передачи данных судна.
+     * @param post модель поста.
      */
-    @Async
-    public void update(PostEntity postEntity, List<VesselDto> vesselDtoList) {
-        for (VesselDto vesselDto : vesselDtoList) {
-            //зачем эта проверка?
-            //если судна нет, то просто запиши его как новое
-            if (!vesselRepository.existsByMmsi(vesselDto.getMmsi())) {
-                //тут разве из VesselDto заполняется инфа VesselRouteEntity ?
-                //если да, то маппер какой-то божественный получается)
-                vesselRepository.save(VesselMapper.INSTANCE.toEntity(vesselDto, postEntity));
+    public void update(Post post) {
+        for (VesselDto vesselDto : postApiClientService.parseToList(post)) {
+            VesselEntity vesselEntity = vesselRepository.findByMmsi(vesselDto.getMmsi());
+            if (vesselEntity == null) {
+                vesselRepository.save(vesselMapper.toEntity(vesselDto, postRepository.findByUrl(post.getUrl())));
             }
+            vesselRouteRepository.save(vesselRouteMapper.toEntity(vesselDto, vesselEntity));
         }
     }
 }
