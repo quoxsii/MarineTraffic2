@@ -10,7 +10,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PostMapper {
     /**
-     * Функция конвертации сущности в модель.
+     * Метод конвертации сущности в модель.
      * @param postEntity сущность пост.
      * @return возвращает модель пост.
      */

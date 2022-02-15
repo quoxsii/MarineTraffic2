@@ -12,7 +12,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface VesselRouteMapper {
     /**
-     * Функция конвертации объекта передачи данных в сущность.
+     * Метод конвертации объекта передачи данных в сущность.
      * @param vesselDto объект передачи данных судна.
      * @param vesselEntity сущность пост.
      * @return возвращает сущность муршрут судна.

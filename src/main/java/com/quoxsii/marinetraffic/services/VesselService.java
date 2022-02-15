@@ -65,7 +65,7 @@ public class VesselService {
     }
 
     /**
-     * Функция получения списка всех моделей суден.
+     * Метод получения списка всех моделей суден.
      * @return возвращает список суден.
      * @throws VesselNotFoundException возникает когда в репозитории не зарегистрировано ни одного судна.
      */
@@ -83,7 +83,7 @@ public class VesselService {
     }
 
     /**
-     * Функция получения модели по морскому идентификатору мобильной службы.
+     * Метод получения модели по морскому идентификатору мобильной службы.
      * @param mmsi морской идентификатор мобильной службы.
      * @return возвращает модель судна.
      * @throws VesselNotFoundException возникает когда в репозитории не зарегистрировано ни одного судна с указанным морским идентификатором мобильной службы.
@@ -97,14 +97,14 @@ public class VesselService {
     }
 
     /**
-     * Процедура обновления спика суден в репозитории.
+     * Метод обновления спика суден и маршрутов в репозитории.
      * @param post модель поста.
      */
     public void update(Post post) {
         for (VesselDto vesselDto : postApiClientService.parseToList(post)) {
             VesselEntity vesselEntity = vesselRepository.findByMmsi(vesselDto.getMmsi());
             if (vesselEntity == null) {
-                vesselRepository.save(vesselMapper.toEntity(vesselDto, postRepository.findByUrl(post.getUrl())));
+                vesselEntity = vesselRepository.save(vesselMapper.toEntity(vesselDto, postRepository.findById(post.getId()).get()));
             }
             vesselRouteRepository.save(vesselRouteMapper.toEntity(vesselDto, vesselEntity));
         }

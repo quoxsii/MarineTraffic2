@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface PostRepository extends CrudRepository<PostEntity, Long> {
     /**
-     * Функция поиска в репозитории по ссылке поста.
+     * Метод поиска в репозитории по ссылке поста.
      * @param url ссылка поста.
      * @return возвращает сущность пост.
      */

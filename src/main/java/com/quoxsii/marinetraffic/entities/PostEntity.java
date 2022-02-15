@@ -30,7 +30,7 @@ public class PostEntity {
     }
 
     /**
-     * Функция получения значения поля {@link PostEntity#id}.
+     * Метод получения значения поля {@link PostEntity#id}.
      * @return возвращает идентификатор сущности поста.
      */
     public Long getId() {
@@ -38,7 +38,7 @@ public class PostEntity {
     }
 
     /**
-     * Процедура определения идентификатора поста {@link PostEntity#id}.
+     * Метод определения идентификатора поста {@link PostEntity#id}.
      * @param id идентификатор сущности поста.
      */
     public void setId(Long id) {
@@ -46,7 +46,7 @@ public class PostEntity {
     }
 
     /**
-     * Функция получения значения поля {@link PostEntity#name}.
+     * Метод получения значения поля {@link PostEntity#name}.
      * @return возвращает название поста.
      */
     public String getName() {
@@ -54,7 +54,7 @@ public class PostEntity {
     }
 
     /**
-     * Процедура определения названия поста {@link PostEntity#name}.
+     * Метод определения названия поста {@link PostEntity#name}.
      * @param name название поста.
      */
     public void setName(String name) {
@@ -62,7 +62,7 @@ public class PostEntity {
     }
 
     /**
-     * Функция получения значения поля {@link PostEntity#url}.
+     * Метод получения значения поля {@link PostEntity#url}.
      * @return возвращает ссылку поста.
      */
     public String getUrl() {
@@ -70,7 +70,7 @@ public class PostEntity {
     }
 
     /**
-     * Процедура определения ссылки поста {@link PostEntity#url}.
+     * Метод определения ссылки поста {@link PostEntity#url}.
      * @param url ссылка поста.
      */
     public void setUrl(String url) {

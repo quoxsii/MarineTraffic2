@@ -73,7 +73,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#vesselEntity}.
+     * Метод получения значения поля {@link VesselRouteEntity#vesselEntity}.
      * @return возвращает сущность судно.
      */
     public VesselEntity getVesselEntity() {
@@ -81,7 +81,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения сущности судна {@link VesselRouteEntity#vesselEntity}.
+     * Метод определения сущности судна {@link VesselRouteEntity#vesselEntity}.
      * @param vesselEntity сущность судно.
      */
     public void setVesselEntity(VesselEntity vesselEntity) {
@@ -89,7 +89,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#id}.
+     * Метод получения значения поля {@link VesselRouteEntity#id}.
      * @return возвращает идентификатор сущности муршруты судна.
      */
     public Long getId() {
@@ -97,7 +97,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения идентификатора сущности муршруты судна {@link VesselRouteEntity#id}.
+     * Метод определения идентификатора сущности муршруты судна {@link VesselRouteEntity#id}.
      * @param id идентификатор сущности муршруты судна.
      */
     public void setId(Long id) {
@@ -105,7 +105,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#lat}.
+     * Метод получения значения поля {@link VesselRouteEntity#lat}.
      * @return возвращает широту судна.
      */
     public Float getLat() {
@@ -113,7 +113,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения широты судна {@link VesselRouteEntity#lat}.
+     * Метод определения широты судна {@link VesselRouteEntity#lat}.
      * @param lat широта судна.
      */
     public void setLat(Float lat) {
@@ -121,7 +121,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#lon}.
+     * Метод получения значения поля {@link VesselRouteEntity#lon}.
      * @return возвращает долготу судна.
      */
     public Float getLon() {
@@ -129,7 +129,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения долготы судна {@link VesselRouteEntity#lon}.
+     * Метод определения долготы судна {@link VesselRouteEntity#lon}.
      * @param lon долгота судна.
      */
     public void setLon(Float lon) {
@@ -137,7 +137,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#cog}.
+     * Метод получения значения поля {@link VesselRouteEntity#cog}.
      * @return возвращает курс судна относительно грунта.
      */
     public Float getCog() {
@@ -145,7 +145,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения курса судна относительно грунта {@link VesselRouteEntity#cog}.
+     * Метод определения курса судна относительно грунта {@link VesselRouteEntity#cog}.
      * @param cog курс судна относительно грунта.
      */
     public void setCog(Float cog) {
@@ -153,7 +153,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#sog}.
+     * Метод получения значения поля {@link VesselRouteEntity#sog}.
      * @return возвращает скорость судна относительно грунта.
      */
     public Float getSog() {
@@ -161,7 +161,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения скорости судна относительно грунта {@link VesselRouteEntity#sog}.
+     * Метод определения скорости судна относительно грунта {@link VesselRouteEntity#sog}.
      * @param sog скорость судна относительно грунта.
      */
     public void setSog(Float sog) {
@@ -169,7 +169,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#trueHeading}.
+     * Метод получения значения поля {@link VesselRouteEntity#trueHeading}.
      * @return возвращает курс судна.
      */
     public Integer getTrueHeading() {
@@ -177,7 +177,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения курса судна {@link VesselRouteEntity#trueHeading}.
+     * Метод определения курса судна {@link VesselRouteEntity#trueHeading}.
      * @param trueHeading курс судна.
      */
     public void setTrueHeading(Integer trueHeading) {
@@ -185,7 +185,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#eta}.
+     * Метод получения значения поля {@link VesselRouteEntity#eta}.
      * @return возвращает ожидаемое время прибытия судна.
      */
     public String getEta() {
@@ -193,7 +193,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения времени прибытия судна {@link VesselRouteEntity#eta}.
+     * Метод определения времени прибытия судна {@link VesselRouteEntity#eta}.
      * @param eta ожидаемое время прибытия судна.
      */
     public void setEta(String eta) {
@@ -201,7 +201,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#rot}.
+     * Метод получения значения поля {@link VesselRouteEntity#rot}.
      * @return возвращает индикатор скорости поворота судна.
      */
     public Float getRot() {
@@ -209,7 +209,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения скорости поворота судна {@link VesselRouteEntity#rot}.
+     * Метод определения скорости поворота судна {@link VesselRouteEntity#rot}.
      * @param rot индикатор скорости поворота судна.
      */
     public void setRot(Float rot) {
@@ -217,7 +217,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#navStateCode}.
+     * Метод получения значения поля {@link VesselRouteEntity#navStateCode}.
      * @return возвращает код состояния навигации судна.
      */
     public Integer getNavStateCode() {
@@ -225,7 +225,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения кода состояния навигации судна {@link VesselRouteEntity#navStateCode}.
+     * Метод определения кода состояния навигации судна {@link VesselRouteEntity#navStateCode}.
      * @param navStateCode код состояния навигации судна.
      */
     public void setNavStateCode(Integer navStateCode) {
@@ -233,7 +233,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#navState}.
+     * Метод получения значения поля {@link VesselRouteEntity#navState}.
      * @return возвращает состояние навигации судна.
      */
     public String getNavState() {
@@ -241,7 +241,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения состояния навигации судна {@link VesselRouteEntity#navState}.
+     * Метод определения состояния навигации судна {@link VesselRouteEntity#navState}.
      * @param navState состояние навигации судна.
      */
     public void setNavState(String navState) {
@@ -249,7 +249,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#destination}.
+     * Метод получения значения поля {@link VesselRouteEntity#destination}.
      * @return возвращает пункт назначения судна.
      */
     public String getDestination() {
@@ -257,7 +257,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения пункта назначения судна {@link VesselRouteEntity#destination}.
+     * Метод определения пункта назначения судна {@link VesselRouteEntity#destination}.
      * @param destination пункт назначения судна.
      */
     public void setDestination(String destination) {
@@ -265,7 +265,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Функция получения значения поля {@link VesselRouteEntity#msgTime}.
+     * Метод получения значения поля {@link VesselRouteEntity#msgTime}.
      * @return возвращает время сообщения от судна.
      */
     public String getMsgTime() {
@@ -273,7 +273,7 @@ public class VesselRouteEntity {
     }
 
     /**
-     * Процедура определения времени сообщения от судна {@link VesselRouteEntity#msgTime}.
+     * Метод определения времени сообщения от судна {@link VesselRouteEntity#msgTime}.
      * @param msgTime время сообщения от судна.
      */
     public void setMsgTime(String msgTime) {

@@ -7,6 +7,10 @@ import com.quoxsii.marinetraffic.entities.PostEntity;
  */
 public class Post {
     /**
+     * Поле идентификатор.
+     */
+    private Long id;
+    /**
      * Поле название.
      */
     private String name;
@@ -22,7 +26,23 @@ public class Post {
     }
 
     /**
-     * Функция получения значения поля {@link Post#name}.
+     * Метод получения значения поля {@link Post#id}.
+     * @return возвращает идентификатор сущности поста.
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Метод определения идентификатора поста {@link Post#id}.
+     * @param id идентификатор сущности поста.
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Метод получения значения поля {@link Post#name}.
      * @return возвращает название поста.
      */
     public String getName() {
@@ -30,7 +50,7 @@ public class Post {
     }
 
     /**
-     * Процедура определения названия поста {@link Post#name}.
+     * Метод определения названия поста {@link Post#name}.
      * @param name название поста.
      */
     public void setName(String name) {
@@ -38,7 +58,7 @@ public class Post {
     }
 
     /**
-     * Функция получения значения поля {@link Post#url}.
+     * Метод получения значения поля {@link Post#url}.
      * @return возвращает ссылку поста.
      */
     public String getUrl() {
@@ -46,7 +66,7 @@ public class Post {
     }
 
     /**
-     * Процедура определения ссылки поста {@link Post#url}.
+     * Метод определения ссылки поста {@link Post#url}.
      * @param url ссылка поста.
      */
     public void setUrl(String url) {

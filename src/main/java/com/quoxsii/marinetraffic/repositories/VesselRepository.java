@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface VesselRepository extends CrudRepository<VesselEntity, Long> {
     /**
-     * Функция поиска в репозитории по морскому идентификатору мобильной службы судна.
+     * Метод поиска в репозитории по морскому идентификатору мобильной службы судна.
      * @param mmsi морской идентификатор мобильной службы судна.
      * @return возвращает сущность судно.
      */

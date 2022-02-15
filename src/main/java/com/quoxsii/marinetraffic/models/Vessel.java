@@ -98,7 +98,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#mmsi}.
+     * Метод получения значения поля {@link Vessel#mmsi}.
      * @return возвращает морской идентификатор мобильной службы судна.
      */
     public String getMmsi() {
@@ -106,7 +106,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения морского идентификатора мобильной службы судна {@link Vessel#mmsi}.
+     * Метод определения морского идентификатора мобильной службы судна {@link Vessel#mmsi}.
      * @param mmsi морской идентификатор мобильной службы судна.
      */
     public void setMmsi(String mmsi) {
@@ -114,7 +114,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#country}.
+     * Метод получения значения поля {@link Vessel#country}.
      * @return возвращает страну судна.
      */
     public String getCountry() {
@@ -122,7 +122,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения страны судна {@link Vessel#country}.
+     * Метод определения страны судна {@link Vessel#country}.
      * @param country страна судна.
      */
     public void setCountry(String country) {
@@ -130,7 +130,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#length}.
+     * Метод получения значения поля {@link Vessel#length}.
      * @return возвращает длину судна.
      */
     public Integer getLength() {
@@ -138,7 +138,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения длины судна {@link Vessel#length}.
+     * Метод определения длины судна {@link Vessel#length}.
      * @param length длина судна.
      */
     public void setLength(Integer length) {
@@ -146,7 +146,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#width}.
+     * Метод получения значения поля {@link Vessel#width}.
      * @return возвращает ширину судна.
      */
     public Integer getWidth() {
@@ -154,7 +154,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения ширины судна {@link Vessel#width}.
+     * Метод определения ширины судна {@link Vessel#width}.
      * @param width ширина судна.
      */
     public void setWidth(Integer width) {
@@ -162,7 +162,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#draught}.
+     * Метод получения значения поля {@link Vessel#draught}.
      * @return возвращает осадку судна.
      */
     public Float getDraught() {
@@ -170,7 +170,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения осадки судна {@link Vessel#draught}.
+     * Метод определения осадки судна {@link Vessel#draught}.
      * @param draught осадка судна.
      */
     public void setDraught(Float draught) {
@@ -178,7 +178,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#callSign}.
+     * Метод получения значения поля {@link Vessel#callSign}.
      * @return возвращает позывной судна.
      */
     public String getCallSign() {
@@ -186,7 +186,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения позывного судна {@link Vessel#callSign}.
+     * Метод определения позывного судна {@link Vessel#callSign}.
      * @param callSign позывной судна.
      */
     public void setCallSign(String callSign) {
@@ -194,7 +194,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#typeCode}.
+     * Метод получения значения поля {@link Vessel#typeCode}.
      * @return возвращает код типа судна.
      */
     public Integer getTypeCode() {
@@ -202,7 +202,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения кода типа судна {@link Vessel#typeCode}.
+     * Метод определения кода типа судна {@link Vessel#typeCode}.
      * @param typeCode код типа судна.
      */
     public void setTypeCode(Integer typeCode) {
@@ -210,7 +210,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#type}.
+     * Метод получения значения поля {@link Vessel#type}.
      * @return возвращает тип судна.
      */
     public String getType() {
@@ -218,7 +218,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения типа судна {@link Vessel#type}.
+     * Метод определения типа судна {@link Vessel#type}.
      * @param type тип судна.
      */
     public void setType(String type) {
@@ -226,7 +226,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#typeDetail}.
+     * Метод получения значения поля {@link Vessel#typeDetail}.
      * @return возвращает подробности по типу судна.
      */
     public String getTypeDetail() {
@@ -234,7 +234,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения подробностей типа судна {@link Vessel#typeDetail}.
+     * Метод определения подробностей типа судна {@link Vessel#typeDetail}.
      * @param typeDetail подробности типа судна.
      */
     public void setTypeDetail(String typeDetail) {
@@ -242,7 +242,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#name}.
+     * Метод получения значения поля {@link Vessel#name}.
      * @return возвращает название судна.
      */
     public String getName() {
@@ -250,7 +250,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения названия судна {@link Vessel#name}.
+     * Метод определения названия судна {@link Vessel#name}.
      * @param name название судна.
      */
     public void setName(String name) {
@@ -258,7 +258,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#lat}.
+     * Метод получения значения поля {@link Vessel#lat}.
      * @return возвращает широту судна.
      */
     public Float getLat() {
@@ -266,7 +266,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения широты судна {@link Vessel#lat}.
+     * Метод определения широты судна {@link Vessel#lat}.
      * @param lat широта судна.
      */
     public void setLat(Float lat) {
@@ -274,7 +274,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#lon}.
+     * Метод получения значения поля {@link Vessel#lon}.
      * @return возвращает долготу судна.
      */
     public Float getLon() {
@@ -282,7 +282,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения долготы судна {@link Vessel#lon}.
+     * Метод определения долготы судна {@link Vessel#lon}.
      * @param lon долгота судна.
      */
     public void setLon(Float lon) {
@@ -290,7 +290,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#cog}.
+     * Метод получения значения поля {@link Vessel#cog}.
      * @return возвращает курс судна относительно грунта.
      */
     public Float getCog() {
@@ -298,7 +298,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения курса судна относительно грунта {@link Vessel#cog}.
+     * Метод определения курса судна относительно грунта {@link Vessel#cog}.
      * @param cog курс судна относительно грунта.
      */
     public void setCog(Float cog) {
@@ -306,7 +306,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#sog}.
+     * Метод получения значения поля {@link Vessel#sog}.
      * @return возвращает скорость судна относительно грунта.
      */
     public Float getSog() {
@@ -314,7 +314,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения скорости судна относительно грунта {@link Vessel#sog}.
+     * Метод определения скорости судна относительно грунта {@link Vessel#sog}.
      * @param sog скорость судна относительно грунта.
      */
     public void setSog(Float sog) {
@@ -322,7 +322,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#trueHeading}.
+     * Метод получения значения поля {@link Vessel#trueHeading}.
      * @return возвращает курс судна.
      */
     public Integer getTrueHeading() {
@@ -330,7 +330,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения курса судна {@link Vessel#trueHeading}.
+     * Метод определения курса судна {@link Vessel#trueHeading}.
      * @param trueHeading курс судна.
      */
     public void setTrueHeading(Integer trueHeading) {
@@ -338,7 +338,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#eta}.
+     * Метод получения значения поля {@link Vessel#eta}.
      * @return возвращает ожидаемое время прибытия судна.
      */
     public String getEta() {
@@ -346,7 +346,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения времени прибытия судна {@link Vessel#eta}.
+     * Метод определения времени прибытия судна {@link Vessel#eta}.
      * @param eta ожидаемое время прибытия судна.
      */
     public void setEta(String eta) {
@@ -354,7 +354,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#rot}.
+     * Метод получения значения поля {@link Vessel#rot}.
      * @return возвращает индикатор скорости поворота судна.
      */
     public Float getRot() {
@@ -362,7 +362,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения скорости поворота судна {@link Vessel#rot}.
+     * Метод определения скорости поворота судна {@link Vessel#rot}.
      * @param rot индикатор скорости поворота судна.
      */
     public void setRot(Float rot) {
@@ -370,7 +370,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#navStateCode}.
+     * Метод получения значения поля {@link Vessel#navStateCode}.
      * @return возвращает код состояния навигации судна.
      */
     public Integer getNavStateCode() {
@@ -378,7 +378,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения кода состояния навигации судна {@link Vessel#navStateCode}.
+     * Метод определения кода состояния навигации судна {@link Vessel#navStateCode}.
      * @param navStateCode код состояния навигации судна.
      */
     public void setNavStateCode(Integer navStateCode) {
@@ -386,7 +386,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#navState}.
+     * Метод получения значения поля {@link Vessel#navState}.
      * @return возвращает состояние навигации судна.
      */
     public String getNavState() {
@@ -394,7 +394,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения состояния навигации судна {@link Vessel#navState}.
+     * Метод определения состояния навигации судна {@link Vessel#navState}.
      * @param navState состояние навигации судна.
      */
     public void setNavState(String navState) {
@@ -402,7 +402,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#destination}.
+     * Метод получения значения поля {@link Vessel#destination}.
      * @return возвращает пункт назначения судна.
      */
     public String getDestination() {
@@ -410,7 +410,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения пункта назначения судна {@link Vessel#destination}.
+     * Метод определения пункта назначения судна {@link Vessel#destination}.
      * @param destination пункт назначения судна.
      */
     public void setDestination(String destination) {
@@ -418,7 +418,7 @@ public class Vessel {
     }
 
     /**
-     * Функция получения значения поля {@link Vessel#msgTime}.
+     * Метод получения значения поля {@link Vessel#msgTime}.
      * @return возвращает время сообщения от судна.
      */
     public String getMsgTime() {
@@ -426,7 +426,7 @@ public class Vessel {
     }
 
     /**
-     * Процедура определения времени сообщения от судна {@link Vessel#msgTime}.
+     * Метод определения времени сообщения от судна {@link Vessel#msgTime}.
      * @param msgTime время сообщения от судна.
      */
     public void setMsgTime(String msgTime) {
