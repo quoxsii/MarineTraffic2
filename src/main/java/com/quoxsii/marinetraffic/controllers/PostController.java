@@ -19,9 +19,9 @@ public class PostController {
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(postService.getAll());
-        } catch (PostNotFoundException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (PostNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
@@ -30,9 +30,9 @@ public class PostController {
     public ResponseEntity<?> getById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(postService.getById(id));
-        } catch (PostNotFoundException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (PostNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
@@ -41,9 +41,9 @@ public class PostController {
     public ResponseEntity<?> add(@RequestParam String name, @RequestParam String url) {
         try {
             return ResponseEntity.ok(postService.add(name, url));
-        } catch (PostAlreadyExistsException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (PostAlreadyExistsException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
@@ -52,9 +52,9 @@ public class PostController {
     public ResponseEntity<?> delete(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(postService.delete(id));
-        } catch (PostNotFoundException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (PostNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }

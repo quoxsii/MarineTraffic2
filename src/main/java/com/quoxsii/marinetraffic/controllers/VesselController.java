@@ -21,9 +21,9 @@ public class VesselController {
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(vesselService.getAll());
-        } catch (VesselNotFoundException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (VesselNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
@@ -32,9 +32,9 @@ public class VesselController {
     public ResponseEntity<?> getByMmsi(@PathVariable String mmsi) {
         try {
             return ResponseEntity.ok(vesselService.getByMmsi(mmsi));
-        } catch (VesselNotFoundException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (VesselNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
