@@ -2,6 +2,7 @@ package com.quoxsii.marinetraffic.services;
 
 import com.quoxsii.marinetraffic.dtos.VesselDto;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
+import com.quoxsii.marinetraffic.entities.VesselRouteEntity;
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
 import com.quoxsii.marinetraffic.mappers.VesselMapper;
 import com.quoxsii.marinetraffic.mappers.VesselRouteMapper;
@@ -25,10 +26,6 @@ public class VesselService {
      */
     private final PostRepository postRepository;
     /**
-     * Поле сервис API клиента поста.
-     */
-    private final PostApiClientService postApiClientService;
-    /**
      * Поле репозиторий суден.
      */
     private final VesselRepository vesselRepository;
@@ -49,7 +46,6 @@ public class VesselService {
     /**
      * Конструктор - используется для инъекций зависимостей.
      * @param postRepository репозиторий постов.
-     * @param postApiClientService сервис API клиента поста.
      * @param vesselRepository репозиторий суден.
      * @param vesselRouteRepository репозиторий муршрутов судна.
      * @param vesselMapper маппер суден.
@@ -57,7 +53,6 @@ public class VesselService {
      */
     public VesselService(PostRepository postRepository, PostApiClientService postApiClientService, VesselRepository vesselRepository, VesselRouteRepository vesselRouteRepository, VesselMapper vesselMapper, VesselRouteMapper vesselRouteMapper) {
         this.postRepository = postRepository;
-        this.postApiClientService = postApiClientService;
         this.vesselRepository = vesselRepository;
         this.vesselRouteRepository = vesselRouteRepository;
         this.vesselMapper = vesselMapper;
@@ -98,15 +93,14 @@ public class VesselService {
 
     /**
      * Метод обновления спика суден и маршрутов в репозитории.
+     * @param vesselDto объект передачи данных судна.
      * @param post модель поста.
      */
-    public void update(Post post) {
-        for (VesselDto vesselDto : postApiClientService.parseToList(post)) {
-            VesselEntity vesselEntity = vesselRepository.findByMmsi(vesselDto.getMmsi());
-            if (vesselEntity == null) {
-                vesselEntity = vesselRepository.save(vesselMapper.toEntity(vesselDto, postRepository.findById(post.getId()).get()));
-            }
-            vesselRouteRepository.save(vesselRouteMapper.toEntity(vesselDto, vesselEntity));
+    public void updateByDto(VesselDto vesselDto, Post post) {
+        VesselEntity vesselEntity = vesselRepository.findByMmsi(vesselDto.getMmsi());
+        if (vesselEntity == null) {
+            vesselEntity = vesselRepository.save(vesselMapper.toEntity(vesselDto, postRepository.findById(post.getId()).get()));
         }
+        vesselRouteRepository.save(vesselRouteMapper.toEntity(vesselDto, vesselEntity));
     }
 }
