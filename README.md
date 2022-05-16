@@ -1,5 +1,5 @@
 # MarineTraffic2
-REST service providing access to maritime traffic information built with Spring.
+REST API service providing access to maritime traffic information built with Spring.
 
 ## Database
 
