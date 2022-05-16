@@ -1,4 +1,4 @@
-# MarineTraffic2
+# MarineTraffic API
 REST API service providing access to maritime traffic information built with Spring.
 
 ## Database
