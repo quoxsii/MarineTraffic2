@@ -2,7 +2,6 @@ package com.quoxsii.marinetraffic.services;
 
 import com.quoxsii.marinetraffic.dtos.VesselDto;
 import com.quoxsii.marinetraffic.entities.VesselEntity;
-import com.quoxsii.marinetraffic.entities.VesselRouteEntity;
 import com.quoxsii.marinetraffic.exceptions.VesselNotFoundException;
 import com.quoxsii.marinetraffic.mappers.VesselMapper;
 import com.quoxsii.marinetraffic.mappers.VesselRouteMapper;
@@ -11,6 +10,8 @@ import com.quoxsii.marinetraffic.models.Vessel;
 import com.quoxsii.marinetraffic.repositories.PostRepository;
 import com.quoxsii.marinetraffic.repositories.VesselRepository;
 import com.quoxsii.marinetraffic.repositories.VesselRouteRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class VesselService {
      * @param vesselMapper маппер суден.
      * @param vesselRouteMapper маппер маршрутов суден.
      */
-    public VesselService(PostRepository postRepository, PostApiClientService postApiClientService, VesselRepository vesselRepository, VesselRouteRepository vesselRouteRepository, VesselMapper vesselMapper, VesselRouteMapper vesselRouteMapper) {
+    public VesselService(PostRepository postRepository, VesselRepository vesselRepository, VesselRouteRepository vesselRouteRepository, VesselMapper vesselMapper, VesselRouteMapper vesselRouteMapper) {
         this.postRepository = postRepository;
         this.vesselRepository = vesselRepository;
         this.vesselRouteRepository = vesselRouteRepository;
@@ -64,8 +65,21 @@ public class VesselService {
      * @return возвращает список суден.
      * @throws VesselNotFoundException возникает когда в репозитории не зарегистрировано ни одного судна.
      */
-    public List<Vessel> getAll() throws VesselNotFoundException {
-        List<VesselEntity> vesselEntityList = (List<VesselEntity>) vesselRepository.findAll();
+    public List<Vessel> getAll(Pageable pageable) throws VesselNotFoundException {
+        Page<VesselEntity> vesselEntityList = vesselRepository.findAll(pageable);
+        if (vesselEntityList.isEmpty()) {
+            throw new VesselNotFoundException("Судна не найдены");
+        }
+
+        List<Vessel> vesselList = new ArrayList<>();
+        for (VesselEntity vesselEntity : vesselEntityList) {
+            vesselList.add(vesselMapper.toModel(vesselEntity, vesselRouteRepository.findTopByVesselEntityOrderByIdDesc(vesselEntity)));
+        }
+        return vesselList;
+    }
+
+    public List<Vessel> getByNameContains(String name, Pageable pageable) throws VesselNotFoundException {
+        Page<VesselEntity> vesselEntityList = vesselRepository.findByNameContainsIgnoreCase(name, pageable);
         if (vesselEntityList.isEmpty()) {
             throw new VesselNotFoundException("Судна не найдены");
         }
